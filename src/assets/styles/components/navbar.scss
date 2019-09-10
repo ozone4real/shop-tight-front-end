@@ -1,0 +1,20 @@
+.navbar {
+  color: white;
+  background: linear-gradient(#8F3984, #6b3368);
+  margin: 0;
+  .nav-container {
+    display: flex;
+    width: 90%;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px;
+    margin: auto;
+
+    div {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+  }
+}
