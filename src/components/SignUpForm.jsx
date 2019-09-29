@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, Fragment } from 'react'
 import Input from './Input'
 import { signUpFormSchema, validationMessages } from '../utils/validator'
 import { useMutation, useApolloClient } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
+import { SIGN_UP_USER } from '../graphql/queries'
 
-export default () => {
+export default ({history}) => {
   const [data, setData] = useState({
     email: '',
     password: '',
@@ -14,30 +15,22 @@ export default () => {
 
   const client = useApolloClient()
 
-  const SIGN_UP_USER = gql`
-    mutation createUser($user: CreateUserInput!) {
-      createUser(input: $user) {
-        user {
-          firstName
-          lastName
-          email
-          isAdmin
-        }
-        token
-        message
-      }
-    }
-  `
-
   const [errors, setErrors] = useState({})
   const [
     signup,
     { loading }
   ] = useMutation(SIGN_UP_USER, {
     variables: { user: { userAttributes: data } },
-    onCompleted ({ createUser: { token } }) {
-      localStorage.setItem('token', token)
-      client.writeData({ user: { isLoggedIn: true } })
+    onCompleted ({ createUser: { token, user } }) {
+      
+      // client.writeData({ user: { isLoggedIn: true, data: user } })
+      client.writeData(
+        {
+          data: {
+            user: {...user, isLoggedIn: true}
+          }
+        })
+        history.push(localStorage.getItem('redirect_url') || '/')
     },
     onError (e) {
       if (e.message.match(/422/)) setErrors({ email: 'Email already taken' })
@@ -47,9 +40,8 @@ export default () => {
   const handleChange = ({ target }) => {
     const key = target.name
     const value = target.value
-    // if(!value) setErrors({...errors, [key]: `${key} cannot be blank`})
     setErrors({ ...errors, [key]: '' })
-    setData({ ...data, [key]: value })
+    setData({ ...data, [key]: value.trim() })
   }
 
   const handleBlur = ({ target }) => {
@@ -68,6 +60,8 @@ export default () => {
   }
 
   return (
+    <Fragment>
+    <div className="sign-up-form">
     <form onSubmit={handleSubmit}>
       <Input
         onChange={handleChange}
@@ -77,6 +71,7 @@ export default () => {
         value={data.firstName}
         onBlur={handleBlur}
         error={errors.firstName}
+        placeholder='First Name'
       />
 
       <Input
@@ -87,6 +82,7 @@ export default () => {
         type='text'
         onBlur={handleBlur}
         error={errors.lastName}
+        placeholder='Last Name'
       />
 
       <Input
@@ -97,6 +93,7 @@ export default () => {
         value={data.email}
         onBlur={handleBlur}
         error={errors.email}
+        placeholder='Email'
       />
 
       <Input
@@ -105,11 +102,14 @@ export default () => {
         name='password'
         value={data.password}
         type='password'
+        placeholder='Password'
         onBlur={handleBlur}
         error={errors.password}
       />
-      <button> {loading ? '...loading' : 'Submit'}</button>
+      <div><button> {loading ? '...loading' : 'Submit'}</button></div>
     </form>
+    </div>
+    </ Fragment>
   )
 }
 

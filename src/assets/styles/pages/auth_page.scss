@@ -1,0 +1,22 @@
+.auth-page {
+  .auth-container {
+    background: white;
+    padding: 15px 0 40px 0;
+    width: 30%;
+    box-shadow: 0 0.125rem 0.25rem 0 rgba(0,0,0,.1);
+    border-radius: .3125rem;
+    text-align: center;
+    margin: 40px auto 30px auto
+  }
+
+  a {
+    text-decoration: none;
+    width: 85%;
+    border: 1px solid #8F3984;
+    display: block;
+    margin: auto;
+    padding: 10px;
+    border-radius: 5px;
+    color: #8F3984;
+  }
+}

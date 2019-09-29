@@ -1,0 +1,22 @@
+.sign-up-form, .log-in-form {
+  width: 100%;
+
+  .input-field {
+    margin: 30px
+
+  }
+  input, button {
+    width: 90%;
+    padding: 15px;
+    border-radius: 5px;
+    outline: none;
+  }
+  input {
+    border: 1px solid #9b9b9b;
+  }
+  button {
+    background: #8F3984;
+    color: white;
+    margin: 10px
+  }
+}
