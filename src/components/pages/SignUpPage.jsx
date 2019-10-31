@@ -1,9 +1,9 @@
 import React from 'react'
-import SignUpForm from '../components/SignUpForm'
+import SignUpForm from '../ui-molecules/SignUpForm'
 import { Link } from 'react-router-dom'
 
 export default ({history}) => (
-  <div className="auth-page">
+  <main className="auth-page">
   <div className="container">
   <div className="auth-container">
     <h3>Create An Account</h3>
@@ -12,5 +12,5 @@ export default ({history}) => (
   <Link to="/login">Log In</Link>
   </div>
   </div>
-  </div>
+  </main>
 )

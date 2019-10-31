@@ -10,9 +10,11 @@
     "apollo-cache-inmemory": "^1.6.3",
     "apollo-cache-persist": "^0.1.1",
     "apollo-client": "^2.6.4",
+    "apollo-client-devtools": "^2.2.5",
     "apollo-link": "^1.2.13",
     "apollo-link-http": "^1.5.16",
     "apollo-upload-client": "^11.0.0",
+    "bootstrap": "^4.3.1",
     "graphql": "^14.5.4",
     "graphql-tag": "^2.10.1",
     "node-sass": "^4.12.0",
@@ -23,7 +25,8 @@
     "react-fontawesome": "^1.6.1",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.1.1",
-    "scss": "^0.2.4"
+    "scss": "^0.2.4",
+    "serve": "^11.2.0"
   },
   "scripts": {
     "start": "react-scripts start",

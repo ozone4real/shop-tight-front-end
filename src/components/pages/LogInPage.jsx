@@ -1,9 +1,9 @@
 import React from 'react'
-import LogInForm from '../components/LogInForm'
+import LogInForm from '../ui-molecules/LogInForm'
 import { Link } from 'react-router-dom'
 
 export default ({history}) => (
-  <div className="auth-page">
+  <main className="auth-page">
   <div className="container">
   <div className="auth-container">
     <h3>Log In</h3>
@@ -12,5 +12,5 @@ export default ({history}) => (
   <Link to="/signup">Create One Now</Link>
   </div>
   </div>
-  </div>
+  </main>
 )

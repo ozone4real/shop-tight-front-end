@@ -1,0 +1,38 @@
+.reg-product-page{
+	margin-top: 30px;
+}
+.auth-page,
+.add-category-page {
+	 margin-top: 30px;
+	.auth-container,
+	.category-form-container {
+		background: white;
+		padding: 15px 0 40px 0;
+		box-shadow: 0 0.125rem 0.25rem 0 rgba(0, 0, 0, 0.1);
+		border-radius: 0.3125rem;
+		text-align: center;
+		margin: 40px auto 30px auto;
+
+		@media (min-width: 992px) {
+			width: 35%;
+		}
+	}
+
+	a {
+		text-decoration: none;
+		width: 85%;
+		border: 1px solid #6b3368;
+		display: block;
+		margin: auto;
+		padding: 10px;
+		border-radius: 5px;
+		color: #6b3368;
+	}
+}
+
+.category-form-container {
+	width: 100%;
+	@media (min-width: 992px) {
+		width: 40% !important;
+	}
+}

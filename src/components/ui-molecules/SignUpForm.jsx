@@ -1,9 +1,8 @@
 import React, { useState, Fragment } from 'react'
 import Input from './Input'
-import { signUpFormSchema, validationMessages } from '../utils/validator'
+import { signUpFormSchema, validationMessages } from '../../utils/validator'
 import { useMutation, useApolloClient } from '@apollo/react-hooks'
-import gql from 'graphql-tag'
-import { SIGN_UP_USER } from '../graphql/queries'
+import { SIGN_UP_USER } from '../../graphql/queries'
 
 export default ({history}) => {
   const [data, setData] = useState({
@@ -61,8 +60,7 @@ export default ({history}) => {
 
   return (
     <Fragment>
-    <div className="sign-up-form">
-    <form onSubmit={handleSubmit}>
+    <form className="sign-up-form" onSubmit={handleSubmit}>
       <Input
         onChange={handleChange}
         id='firstName'
@@ -108,7 +106,6 @@ export default ({history}) => {
       />
       <div><button> {loading ? '...loading' : 'Submit'}</button></div>
     </form>
-    </div>
     </ Fragment>
   )
 }

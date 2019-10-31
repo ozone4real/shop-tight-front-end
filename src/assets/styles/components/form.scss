@@ -1,22 +1,112 @@
-.sign-up-form, .log-in-form {
-  width: 100%;
+.sign-up-form,
+.log-in-form,
+.category-form {
+	width: 100%;
 
-  .input-field {
-    margin: 30px
+	.input-field,
+	.select-field {
+		margin-bottom: 30px;
+	}
+	input,
+	select,
+	button {
+		width: 85%;
+		padding: 12px;
+		border-radius: 7px;
+		outline: none;
+		font-size: 15px;
+	}
 
-  }
-  input, button {
-    width: 90%;
-    padding: 15px;
-    border-radius: 5px;
-    outline: none;
-  }
-  input {
-    border: 1px solid #9b9b9b;
-  }
-  button {
-    background: #8F3984;
-    color: white;
-    margin: 10px
-  }
+	input,
+	select {
+		border: 1px solid #d8d8d8;
+	}
+
+	select {
+		height: 45px;
+		background-color: white;
+	}
+
+	button {
+		background-color: #6b3368;
+		font-weight: 500;
+		color: white;
+		margin: 10px;
+	}
+}
+
+.product-form-container,
+.category-form-container {
+	padding: 10px;
+	background: #ffffff;
+	border: 1px solid rgba($color: #000000, $alpha: 0.1);
+	@media (min-width: 768px) {
+		padding: 30px;
+	}
+}
+
+// .category-form-container {
+//   width: 100%;
+//   margin: auto;
+//   @media (min-width: 768px) {
+//     width: 60%;
+//   }
+//  .category-form{e
+//     .input-field, .select-field {
+//       width: 100%;
+//     }
+//   }
+
+// }
+
+.product-form {
+	width: 100%;
+	.product-fields,
+	.product-details-fields {
+		display: flex;
+		flex-flow: row wrap;
+		justify-content: space-between;
+	}
+
+	.input-field,
+	.select-field {
+		margin: 0 10px 30px 10px;
+		width: 100%;
+		@media (min-width: 518px) {
+			width: 45%;
+		}
+
+		@media (min-width: 992px) {
+			width: 22.5%;
+		}
+	}
+
+	// .add-variation-btn {
+	//   display: inline-block;
+	// }
+
+	input,
+	.submit-btn,
+	select {
+		padding: 12px;
+		border-radius: 7px;
+		outline: none;
+		width: 100%;
+		font-size: 15px;
+	}
+
+	input {
+		border: 1px solid #d8d8d8;
+	}
+
+	select {
+		height: 100%;
+	}
+	.submit-btn {
+		background: #6b3368;
+		color: white;
+		width: 30%;
+		display: block;
+		margin: 10px auto;
+	}
 }

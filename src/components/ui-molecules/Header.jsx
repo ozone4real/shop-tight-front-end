@@ -1,19 +1,18 @@
-import React, {useEffect, Fragment} from 'react'
+import React, {Fragment} from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import SearchBar from './SearchBar'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-
-
-import { InMemoryCache } from 'apollo-cache-inmemory';
+import Avatar from '../../assets/icons/avatar'
+import CartIcon from '../../assets/icons/shopping-cart'
 import { Link } from 'react-router-dom';
 import { useApolloClient } from "@apollo/react-hooks";
-import { USER } from '../graphql/queries';
+import { USER } from '../../graphql/queries';
 
 
 const Header = () => {
   const client = useApolloClient()
-  const { data, loading, error } = useQuery(USER)
-  console.log(data)
+  const { data, loading } = useQuery(USER)
+  
   const handleLogOut = (e) => {
     e.preventDefault()
     localStorage.removeItem('token')
@@ -34,11 +33,11 @@ const Header = () => {
           <div className='user-links'>
           <div className="account-links-cont">
               <div className="account-links">
-                <FontAwesomeIcon icon='user-alt' size={'lg'} />
+                <Avatar />
           { 
             loading || !data.user.isLoggedIn ? <Link to='/signup'>Sign Up</Link> 
             : (
-                <Fragment><span>Hi, {data.user.firstName}</span>
+                <Fragment><span>{data.user.firstName}</span>
                 <FontAwesomeIcon icon='caret-down' />
                 <ul>
                 <li><Link to='/'>My Profile</Link></li>
@@ -48,6 +47,7 @@ const Header = () => {
                     <Fragment> 
                       <li><Link to="/registerProduct">Register Product</Link></li>
                       <li><Link to="/addCategory">Add Category</Link></li>
+                      <li><Link to="/addSubCategory">Add Sub-category</Link></li>
                     </Fragment>
                   }
                   <li><Link to='/' onClick={handleLogOut}>Log out</Link></li>
@@ -57,13 +57,9 @@ const Header = () => {
                   </div>
                   </div>
             <Link to='/'>
-              <FontAwesomeIcon
-                icon={['fas', 'shopping-cart'] }
-                size={'lg'}
-                className='cart-icon'
-              
-              />
-              <span>My Cart</span>
+              <CartIcon />
+
+              <span> My Cart</span>
             </Link>
         </div>
       </div>

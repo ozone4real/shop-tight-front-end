@@ -1,7 +1,7 @@
 import React, { useState, Fragment } from 'react'
 import Input from './Input'
 import { useMutation, useApolloClient } from '@apollo/react-hooks'
-import { LOG_IN_USER } from '../graphql/queries'
+import { LOG_IN_USER } from '../../graphql/queries'
 
 export default ({history}) => {
   const [data, setData] = useState({
@@ -44,8 +44,7 @@ export default ({history}) => {
 
   return (
     <Fragment>
-    <div className="log-in-form">
-    <form onSubmit={handleSubmit}>
+    <form className="log-in-form" onSubmit={handleSubmit}>
       <Input
         onChange={handleChange}
         id='email'
@@ -68,7 +67,6 @@ export default ({history}) => {
       <div><button> {loading ? '...loading' : 'Submit'}</button></div>
     </form>
     {/* <button onClick={handleClick}>Click me</button> */}
-    </div>
     </ Fragment>
   )
 }
