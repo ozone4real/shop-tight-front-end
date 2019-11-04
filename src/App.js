@@ -37,7 +37,8 @@ function App() {
           isAdmin: false,
           firstName: null,
           __typename: 'User'    
-        }
+        },
+        userCart: []
       };
 
       await persistCache({
@@ -47,7 +48,7 @@ function App() {
       });
 
       const options = {
-        uri: 'http://api.shop-tight.com/graphql'
+        uri: 'http://localhost:5000/graphql'
       }
       const httpLink = new HttpLink(options)
       

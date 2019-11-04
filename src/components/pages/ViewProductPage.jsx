@@ -60,7 +60,6 @@ export default ({ match: {params: {urlKey}} }) => {
 
   const [ addProductToCart, { loading: addingProduct } ] = useMutation(ADD_PRODUCT_TO_CART, {
     onCompleted (data) {
-      console.log(data)
       client.writeData({
         data: { userCart: data.addProductToCart.userCart}
       })
@@ -228,10 +227,12 @@ export default ({ match: {params: {urlKey}} }) => {
     </div>
     </section>
     <aside className="right-sec">    
-      <h4 className="text-light">SHIPPING DETAILS</h4>
+      <h4 className="">SHIPPING DETAILS</h4>
       <hr/>
       <div><span className="text-light text-md">DISCOUNT:</span> <h4 className="d-inline">{ `${discount}%` }</h4></div>
+      <hr/>
       <div><span className="text-light text-md">DELIVERY FEE:</span> <h4 className="d-inline">{ `\u20A6${shippingFee}` }</h4></div>
+      <hr/>
       <p className="text-light">This product would be delivered within 
         10 working days when you choose to pay on delivery and 5 working
         days when you pay on check-out with a debit card.

@@ -2,6 +2,7 @@ import React, { useState, Fragment } from 'react'
 import Input from './Input'
 import { useMutation, useApolloClient } from '@apollo/react-hooks'
 import { LOG_IN_USER } from '../../graphql/queries'
+import useExtractCartCache from '../../custom-hooks/useExtractCartCache';
 
 export default ({history}) => {
   const [data, setData] = useState({
@@ -10,6 +11,7 @@ export default ({history}) => {
   })
 
   const client = useApolloClient()
+  const extractCache = useExtractCartCache(history);
   const [errors, setErrors] = useState({})
   const [
     login,
@@ -24,7 +26,7 @@ export default ({history}) => {
             user: {...user, isLoggedIn: true}
           }
         })
-      history.push(localStorage.getItem('redirect_url') || '/')
+      extractCache()
     },
     onError (e) {
       if (e.message.match(/401/)) setErrors({ email: 'Invalid Email Or Password' })

@@ -59,8 +59,14 @@ const Header = () => {
                   </div>
                   </div>
             <Link to='/cart'>
-            <span className="cart-link"><CartIcon /><span className="cart-items-count">
-            {cartData && cartData.userCart && cartData.userCart.reduce((current, next) => (current + next.quantity), 0)}</span></span>
+            <span className="cart-link"><CartIcon />
+            {cartData &&
+             cartData.userCart.length ?
+              <span className="cart-items-count">
+                {cartData.userCart.reduce((current, next) => (current + next.quantity), 0)}
+                </span> : ''
+            }
+                </span>
               <span> My Cart</span>
             </Link>
         </div>

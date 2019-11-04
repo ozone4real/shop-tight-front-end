@@ -32,6 +32,9 @@
       display: inline-block;
       position: absolute;
       bottom: 8px;
+      a {
+        fill: #868686;
+      }
       a:hover {
         color: #6b3368;
         font-weight: bold;
@@ -43,13 +46,13 @@
         height: 19px;
       }
       svg {
-        width: 18px;
-        height: 18px;
+        width: 16px;
+        height: 16px;
       }
     }
     h3 {
       margin-bottom: 10px;
-      padding-right: 4px;
+      padding-right: 5px;
     }
   }
   .quantity-sec {
@@ -71,10 +74,34 @@
   .unit-price-sec {
     width: 15%;
   }
+  .quantity-sec, .total-price-sec, .unit-price-sec {
+    text-align: center;
+  }
 }
 
-.quantity-sec, .total-price-sec, .unit-price-sec {
-  text-align: center;
-}
 
+.cart-table-header {
+  display: flex;
+  flex-direction: row;
+  h4 {
+     margin-bottom: 10px;
+  }
+  .product-details {
+    width: 52%;
+    margin-right: 10px;
+  }
+  .total-price-sec {
+    width: 15%;
+  }
+
+  .unit-price-sec {
+    width: 15%;
+    text-align: left;
+  }
+
+  .quantity-sec {
+    width: 17%;
+    text-align: center;
+  }
+}
 

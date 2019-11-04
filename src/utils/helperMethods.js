@@ -32,7 +32,7 @@ export const normalizeProductData = (data) => {
 }
 
 export const  normalizeCartProductData = (data) => {
-  const productData = {...data, ...data.product}
+  const productData = {...data.product, ...data}
   delete productData.product
   return productData;
 }

@@ -17,6 +17,7 @@
     display: grid;
     height: max-content;
     grid-template-columns: 55% 45%;
+    padding: 30px 25px 30px 25px;
 
     .product-details-sec {
       margin-left: 30px;
@@ -59,12 +60,12 @@
     box-shadow: 0 0.125rem 0.25rem 0 rgba(0, 0, 0, 0.1);
     border: 1px solid rgba(0, 0, 0, 0.1);
     margin: 10px;
-    padding: 30px 25px 30px 25px;
   }
 
   .right-sec {
     height: max-content;
     background-color: white;
+    padding: 30px 15px;
 
     .add-to-cart-btn {
       button {

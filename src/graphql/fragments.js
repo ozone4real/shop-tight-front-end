@@ -2,18 +2,18 @@ import gql from 'graphql-tag';
 
 export const CART_FRAGMENT = gql`
 fragment UserCart on Cart {
-  id,
   quantity,
   discountedSubTotalForProduct
   subTotalForProduct
   productDetail {
       product {
-          id,
-          brand,
-          productName,
-          productDescription,
-          shippingFee,
-          images
+        productName
+        productDescription
+        images
+        brand
+        shippingFee
+        discount
+        id
       },
       id
       size

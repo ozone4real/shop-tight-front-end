@@ -53,7 +53,7 @@ export const CREATE_CATEGORY = gql`
 export const REMOVE_PRODUCT_FROM_CART = (id) => (
   gql`
   mutation removeProductFromCart {
-    removeProductFromCart(input: {id: ${id} all: true}){
+    removeProductFromCart(input: {productDetailId: ${id} all: true}){
       userCart {
         ...UserCart
     }
@@ -180,7 +180,6 @@ export const PRODUCT = (id) => (
   {
   product(id: ${id}) {
       productName
-      productSize
       productDescription
       images
       brand
