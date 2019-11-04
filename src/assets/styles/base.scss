@@ -14,6 +14,14 @@ body {
   box-sizing: border-box; 
 }
 
+.item-title {
+  margin-right: 8px;
+}
+
+.blur {
+  opacity: 0.05;
+}
+
 .hover-underline:hover {
   text-decoration: underline;
   color: rgb(206, 115, 12);
@@ -33,7 +41,7 @@ a {
 }
 
 .text-light {
-  color: #5a5a5a;
+  color: #525151;
 }
 
 .text-lighter {
@@ -44,9 +52,17 @@ a {
   font-size: 90%;
 }
 
+.text-danger {
+  color: red;
+}
+
 .text-sm {
   font-size: 80%;
 }
+
+// h1, h2, h3, h4, h5, h5 {
+//   opacity: 0.8;
+// }
 
 hr {
   background-color: transparent;

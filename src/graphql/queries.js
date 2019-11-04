@@ -1,4 +1,5 @@
 import gql from 'graphql-tag';
+import { CART_FRAGMENT } from './fragments'
 
 export const SIGN_UP_USER = gql`
   mutation createUser($user: CreateUserInput!) {
@@ -15,6 +16,29 @@ export const SIGN_UP_USER = gql`
     }
   }`
 
+export const ADD_PRODUCT_TO_CART = gql`
+  mutation addProductToCart($input: AddProductToCartInput!){
+    addProductToCart(input: $input){
+      userCart {
+        ...UserCart
+    }
+    }
+}
+${CART_FRAGMENT}
+`
+
+export const UPDATE_CART_QUANTITY = gql`
+  mutation updateCartQuantity($input: UpdateCartQuantityInput!){
+  updateCartQuantity(input: $input) {
+     userCart {
+        ...UserCart
+    }
+  }
+}
+${CART_FRAGMENT}
+`
+ 
+
 export const CREATE_CATEGORY = gql`
   mutation createCategory($category: CreateCategoryInput!) {
   createCategory(input: $category) {
@@ -25,6 +49,20 @@ export const CREATE_CATEGORY = gql`
     }
   }
 }`
+
+export const REMOVE_PRODUCT_FROM_CART = (id) => (
+  gql`
+  mutation removeProductFromCart {
+    removeProductFromCart(input: {id: ${id} all: true}){
+      userCart {
+        ...UserCart
+    }
+      message
+    }
+}
+${CART_FRAGMENT}
+`
+)
 
 export const CATEGORIES = gql`
   {
@@ -83,6 +121,16 @@ export const CREATE_SUB_CATEGORY = gql`
     }
   }`
 
+
+export const USER_CART = gql`
+  {
+    userCart {
+      ...UserCart
+    }
+}
+${CART_FRAGMENT}
+`
+
 export const FETCH_SUB_CATEGORIES = gql`
 {
 subCategories {
@@ -136,17 +184,26 @@ export const PRODUCT = (id) => (
       productDescription
       images
       brand
+      shippingFee
+      discount
+      id
     productDetails {
       id
       size
       color
       quantitySold
+      price
+      discountedPrice
       priceInNaira
       discountedPriceInNaira
       urlKey
       quantityInStock
       }
     subCategory {
+      categoryName
+      urlKey
+    }
+    category {
       categoryName
       urlKey
     }

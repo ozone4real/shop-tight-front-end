@@ -66,6 +66,30 @@ header {
 			color: rgba(0, 0, 0, 0.8);
 			align-items: center;
 
+			.cart-link {
+				position: relative;
+				.cart-items-count {
+					line-height: 1.1em;
+					padding: 3px;
+					border: 2px solid #fff;
+					position: absolute;
+					min-width: 22px;
+					min-height: 22px;
+					font-weight: 700;
+					text-align: center;
+					letter-spacing: -1px;
+					text-indent: -2px;
+					position: absolute;
+					left: 70%;
+					bottom: 100%;
+					background: rgb(230, 6, 6);
+					color: white;
+					border-radius: 50%;
+					font-weight: 700;
+					font-size: smaller;
+				}
+			}
+
 			span,
 			.fa-caret-down {
 				display: none;

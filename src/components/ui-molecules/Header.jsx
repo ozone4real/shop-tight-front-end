@@ -6,12 +6,14 @@ import Avatar from '../../assets/icons/avatar'
 import CartIcon from '../../assets/icons/shopping-cart'
 import { Link } from 'react-router-dom';
 import { useApolloClient } from "@apollo/react-hooks";
-import { USER } from '../../graphql/queries';
+import { USER, USER_CART } from '../../graphql/queries';
 
 
 const Header = () => {
   const client = useApolloClient()
   const { data, loading } = useQuery(USER)
+  const { data: cartData } = useQuery(USER_CART, {fetchPolicy: data.user.isLoggedIn ? 'cache-and-network' : 'cache'})
+  console.log(cartData)
   
   const handleLogOut = (e) => {
     e.preventDefault()
@@ -56,9 +58,9 @@ const Header = () => {
                   )}
                   </div>
                   </div>
-            <Link to='/'>
-              <CartIcon />
-
+            <Link to='/cart'>
+            <span className="cart-link"><CartIcon /><span className="cart-items-count">
+            {cartData && cartData.userCart && cartData.userCart.reduce((current, next) => (current + next.quantity), 0)}</span></span>
               <span> My Cart</span>
             </Link>
         </div>

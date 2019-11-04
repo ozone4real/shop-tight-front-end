@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Fragment } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ApolloProvider } from '@apollo/react-hooks';
 import { ApolloClient } from 'apollo-client';
 import { InMemoryCache } from 'apollo-cache-inmemory';
@@ -7,6 +7,8 @@ import { USER } from './graphql/queries';
 import { persistCache } from 'apollo-cache-persist';
 import { createUploadLink } from 'apollo-upload-client'
 import { ApolloLink, concat } from 'apollo-link';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 // import './App.css';
 import Header from './components/ui-molecules/Header';
 import NavBar from './components/ui-molecules/NavBar';
@@ -19,6 +21,7 @@ import AddSubCategoryPage from './components/pages/AddSubCategoryPage'
 import EditCategoryPage from './components/pages/EditCategoryPage';
 import HomePage from './components/pages/HomePage';
 import ViewProductPage from './components/pages/ViewProductPage';
+import CartPage from './components/pages/CartPage';
 
 
 function App() {
@@ -44,7 +47,7 @@ function App() {
       });
 
       const options = {
-        uri: 'http://localhost:5000/graphql'
+        uri: 'http://api.shop-tight.com/graphql'
       }
       const httpLink = new HttpLink(options)
       
@@ -87,7 +90,6 @@ function App() {
     initializeClient()
   }, [])
 
-  console.log(client)
   if(!client) {
     return <h5>....Loading</h5>
   }
@@ -96,6 +98,7 @@ function App() {
     <div className="App">
       <Header/>
       <NavBar />
+      <ToastContainer autoClose={5000} draggable={true} position="top-right" />
       <Switch>
       <Route path="/registerProduct" component={RegisterProductPage} />
       <Route path="/addCategory" component={AddCategoryPage} />
@@ -104,6 +107,7 @@ function App() {
       <Route path="/signup" component={SignUpPage} />
       <Route path="/products/:urlKey" component={ViewProductPage} />
       <Route path="/login" component={LogInPage} />
+      <Route path="/cart" component={CartPage} />
       <Route path="/" component={HomePage} exact />
       </Switch>
     </div>

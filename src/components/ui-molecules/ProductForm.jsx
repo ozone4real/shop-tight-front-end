@@ -1,7 +1,7 @@
 import React, { useState, Fragment } from 'react';
 import { useMutation, useQuery } from '@apollo/react-hooks';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import GarbageIcon from  '../../assets/icons/garbage'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import GarbageIcon from  '../../assets/icons/garbage';
 import {FETCH_SUB_CATEGORIES, CREATE_PRODUCT} from '../../graphql/queries';
 import Select from './Select';
 import Input from './Input';

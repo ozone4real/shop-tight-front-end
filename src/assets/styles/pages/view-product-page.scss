@@ -1,19 +1,25 @@
 .view-product-page {
   .main-sec {
     display: grid;
-    margin-top: 30px;
-    grid-template-columns: 75% 25%;
+    grid-template-columns: 78% 22%;
+  }
+
+  .select-field {
+    margin-left: 5px;
+    display: inline;
+    select {
+      font-size: inherit;
+      margin-right: 5px;
+    }
   }
   
   .left-sec {
     display: grid;
-    grid-template-columns: 60% 40%;
+    height: max-content;
+    grid-template-columns: 55% 45%;
 
     .product-details-sec {
-      div {
-        margin-bottom: 15px;
-      }
-
+      margin-left: 30px;
       .color-select {
         display: inline-flex;
         margin-left: 10px;
@@ -24,13 +30,28 @@
           border: 1px solid rgba(0, 0, 0, 0.15);
           cursor: pointer;     
         }
-
         .selected-color {
-          color: #6b3368;
-          border-color: #6b3368;;
+          color: green;
+          border-color: green;
+        }
+      }
+
+      .product-description {
+        ul {
+          list-style-type: disc;
+          margin-left: 15px;
+
+          li {
+            margin-bottom: 8px;
+          }
         }
       }
     }
+
+    .product-details-sec > div, .colors, .size-select {
+      margin-bottom: 15px;
+    }
+
   }
 
   .left-sec, .right-sec {
@@ -38,20 +59,63 @@
     box-shadow: 0 0.125rem 0.25rem 0 rgba(0, 0, 0, 0.1);
     border: 1px solid rgba(0, 0, 0, 0.1);
     margin: 10px;
-    padding: 25px;
+    padding: 30px 25px 30px 25px;
   }
 
   .right-sec {
-    height: 700px;
+    height: max-content;
     background-color: white;
+
+    .add-to-cart-btn {
+      button {
+        width: 100%;
+        color: white;
+        background: #6b3368;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        svg, span {
+          margin: 5px;
+        }
+
+        svg {
+          color: white;
+        }
+      }
+    }
   }
 
-  .product-img {
-    margin-right: 25px;
-    img {
+  .right-sec > div {
+    margin-bottom: 15px;
+  }
+
+  .product-images {
+    margin-right: 50px;
+    .main-img {
       width: 100%;
+      object-fit: contain;
       max-height: 600px;
-      object-fit: cover;
+      margin-bottom: 20px;
+    }
+
+    .small-images{
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: center;
+      padding: 10px;
+      border: 1px solid #dfdfdf;
+      img {
+        width: 50px;
+        height: 50px;
+        cursor: pointer;
+      }
+
+      img:hover {
+        width: 53px;
+        height: 53px;
+        border: 1px solid #6b3368;
+      }
     }
   }
 }

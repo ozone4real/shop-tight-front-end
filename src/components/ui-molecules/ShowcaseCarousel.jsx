@@ -18,13 +18,6 @@ export default () => {
   const selectedCategories = data.categories.filter(({categoryName}) => (
     ["Phones And Tablets", "Computers", "Women's shoes" ].includes(categoryName)) 
   );
-  
-
-  // const carouselItems = [
-  //   <h1> Laptops at affordable prices. Shop now</h1>,
-  //    <h1> Mobile phones at affordable prices</h1>,
-  //    <h1>Classy women shoes</h1>
-  //   ]
 
   const descPositions = [
     {left: 0, top: '25%'},

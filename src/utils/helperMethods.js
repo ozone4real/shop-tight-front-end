@@ -1,3 +1,5 @@
+import shortid from 'shortid';
+
 export const trimValues = (data) => {
   const trim = (obj) => (
     Object.entries(obj).reduce((trimmed, [key, value]) => {
@@ -29,6 +31,12 @@ export const normalizeProductData = (data) => {
   return normalize(data)
 }
 
+export const  normalizeCartProductData = (data) => {
+  const productData = {...data, ...data.product}
+  delete productData.product
+  return productData;
+}
+
 export const priceRange = (data) => {
   if(data.length === 1) return {price : `${data[0].priceInNaira}`, discounted: `${data[0].discountedPriceInNaira}`}
   const prices = data.map((elem) => elem.priceInNaira ).sort()
@@ -42,4 +50,15 @@ export const variations = (data) => {
   if(data.length === 1) return;
   // const variations = data.map((item) => item.color )
 
+}
+
+export const priceInNaira = (price) => {
+  const priceInString = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  return `\u20A6${priceInString}`
+}
+
+export const optionsArrayFromNum = (num) => {
+  return Array.from({length: num}, (elem, index) => (
+    { name: index + 1, value: index + 1, id: shortid.generate() }     
+  ))
 }

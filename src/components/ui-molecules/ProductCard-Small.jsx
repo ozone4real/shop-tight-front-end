@@ -14,7 +14,7 @@ export default ({product: {images, productName, brand, urlKey, productDetails}})
     </div>
     <div className="product-price">
     <p>{discounted}</p> 
-    {price != discounted && <p className="line-through text-md text-light">{price}</p>}
+    {price != discounted && <p className="line-through text-md text-lighter">{price}</p>}
     </div>
   </Link>)
 }

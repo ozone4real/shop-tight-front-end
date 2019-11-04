@@ -1,0 +1,11 @@
+.catalog-tree-nav {
+  margin: 10px;
+  display: inline-block;
+  .next-arrow {
+    margin: 10px;
+  }
+  a:hover {
+    color: #6b3368;
+    text-decoration: underline;
+  }
+}
