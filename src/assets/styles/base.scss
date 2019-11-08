@@ -14,6 +14,11 @@ body {
   box-sizing: border-box; 
 }
 
+.path-active {
+  fill: #6b3368;
+  color: #6b3368;;
+}
+
 .item-title {
   margin-right: 8px;
 }
@@ -42,10 +47,12 @@ a {
 
 .text-light {
   color: #525151;
+  fill: #525151;
 }
 
 .text-lighter {
   color: #868686;
+  fill: #868686;
 }
 
 .text-md {

@@ -1,0 +1,51 @@
+.check-out-page {
+  .blur-and-disable {
+    opacity: 0.3;
+  }
+  .main-sec {
+    display: grid;
+    grid-template-columns: 60% 40%;
+    margin-top: 20px;
+
+  .right-sec {
+    margin-left: 20px;
+    .horizontal-card, .cart-table-header{
+      * {
+        font-size: 98%;
+      }
+    }
+    .horizontal-card {
+      height: 130px;
+    }
+    
+    h2 {
+      margin-bottom: 0;
+    }
+  }
+
+  .left-sec {
+    background: white;
+    padding: 40px 30px;
+    margin-right: 10px;
+    box-shadow: 0 0.125rem 0.25rem 0 rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    .info-heading {
+      margin-top: 0;
+      margin-bottom: 40px;
+      h2 {
+        margin: 10px 0;
+      }
+    }
+    .profile-form {
+      margin-bottom: 30px;
+      .input-field {
+        width: 47%;
+        input {
+          border-bottom: 1px solid #d8d8d8;
+        }
+      }
+    }
+  }
+  }
+  
+}

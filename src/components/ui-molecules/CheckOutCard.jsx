@@ -1,23 +1,30 @@
 import React from 'react';
 import { priceInNaira } from '../../utils/helperMethods';
 
-export default ({ itemsCount, totalPrice }) => (
-  <div class="check-out-card">
+export default ({ itemsCount, totalPrice, user, history }) => (
+  <div className="check-out-card">
     <h3> Overview </h3>
     <hr/>
     <div>
-      <span class="text-light text-md item-title">TOTAL NO. OF ITEMS:</span>
-      <h3 class="d-inline">{itemsCount}</h3>
+      <span className="text-light text-md item-title">TOTAL NO. OF ITEMS:</span>
+      <h3 className="d-inline">{itemsCount}</h3>
     </div>
     <hr/>
-    <div class="total-price">
-      <span class="text-light text-md item-title">TOTAL PRICE:</span>
-      <h3 class="d-inline">{priceInNaira(totalPrice)}</h3>
-      <div class="text-light text-sm">Delivery charges not included</div>
+    <div className="total-price">
+      <span className="text-light text-md item-title">TOTAL PRICE:</span>
+      <h3 className="d-inline">{priceInNaira(totalPrice)}</h3>
+      <div className="text-light text-sm">Delivery charges not included</div>
     </div>
     <hr/>
-    <div class="check-out-btn">
-      <button>Sign In And Check Out</button>
+    <div className="check-out-btn">
+      <button onClick={() => {
+        if(!user.isLoggedIn) {
+          localStorage.setItem('redirect_url', history.location.pathname);
+          return history.push('/login')
+        }
+        history.push('/checkout')
+      }}>{user.isLoggedIn ? 'Check Out': 'Sign In To Check Out'}
+    </button>
     </div>
   </div>
 )

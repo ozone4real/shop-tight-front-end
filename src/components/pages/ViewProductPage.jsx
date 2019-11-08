@@ -9,7 +9,7 @@ import Select from '../ui-molecules/Select';
 import CatalogTreeNav from '../ui-molecules/CatalogTreeNav';
 import CartIcon from '../../assets/icons/shopping-cart'
 
-export default ({ match: {params: {urlKey}} }) => {
+export default ({ match: {params: { urlKey }} }) => {
   const { data, loading } = useQuery(PRODUCT(getIdFromUrlKey(urlKey)), { fetchPolicy: 'cache-and-network' });
 
   if(data) {
@@ -70,7 +70,7 @@ export default ({ match: {params: {urlKey}} }) => {
     }
   })
 
-  if(loading) return <div></div>
+  if(!data) return <div></div>
 
 
   const sizesForSelectedColor = productDetails.filter((item) => item.size && item.color === selectedColor)
@@ -96,7 +96,7 @@ export default ({ match: {params: {urlKey}} }) => {
     const prodExists = userCart.find((item) => item.productDetail.id === prod.id )
     const product = {id: productId, productName, 
       productDescription, 
-      brand,
+      brand, urlKey,
       images, subCategory,
       shippingFee, category,
       discount, __typename: 'ProductType'
@@ -218,9 +218,9 @@ export default ({ match: {params: {urlKey}} }) => {
     <div className="product-description">
       <h3 className="text-light">Description</h3>
       <ul>
-      {productDescription.split(', ').map((desc, index) => (
+      {productDescription.split(';').map((desc, index) => (
         <li key={index}>
-          <span>{desc}</span>
+          <span>{desc.trim()}</span>
         </li>
       ))}</ul>
     </div>

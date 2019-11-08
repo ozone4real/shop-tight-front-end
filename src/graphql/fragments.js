@@ -14,6 +14,7 @@ fragment UserCart on Cart {
         shippingFee
         discount
         id
+        urlKey
       },
       id
       size
@@ -23,7 +24,6 @@ fragment UserCart on Cart {
       discountedPrice
       price
       discountedPriceInNaira
-      urlKey
       quantityInStock,
   }
 }

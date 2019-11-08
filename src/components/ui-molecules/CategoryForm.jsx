@@ -30,7 +30,6 @@ export default ({ params }) => {
     delete data.__typename;
     delete data.urlKey
     initialState = { ...data, images: null, picture: data.images };
-    console.log(initialState)
     query = UPDATE_CATEGORY;
   }
 

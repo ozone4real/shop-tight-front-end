@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@apollo/react-hooks": "^3.1.0",
+    "@babel/core": "^7.7.2",
     "@fortawesome/fontawesome-svg-core": "^1.2.22",
     "@fortawesome/free-solid-svg-icons": "^5.10.2",
     "@fortawesome/react-fontawesome": "^0.1.4",
@@ -17,6 +18,7 @@
     "apollo-upload-client": "^11.0.0",
     "bootstrap": "^4.3.1",
     "eslint-plugin-react-hooks": "^2.2.0",
+    "express": "^4.17.1",
     "graphql": "^14.5.4",
     "graphql-tag": "^2.10.1",
     "node-sass": "^4.12.0",
@@ -25,6 +27,7 @@
     "react-apollo": "^3.1.0",
     "react-dom": "^16.9.0",
     "react-fontawesome": "^1.6.1",
+    "react-radio-group": "^3.0.3",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.1.1",
     "react-toastify": "^5.4.0",
@@ -33,7 +36,8 @@
     "shortid": "^2.2.15"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start-dev": "react-scripts start",
+    "start": "npm run build && node  server.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

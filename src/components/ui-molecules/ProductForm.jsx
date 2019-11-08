@@ -8,7 +8,7 @@ import Input from './Input';
 import ProductDetailsFields from './ProductDetailsFields';
 import { trimValues } from '../../utils/helperMethods'
 
-export default () => {
+export default ({ history }) => {
    
   const [productAttributes, setProductAttributes] = useState({
     subCategoryId: '',
@@ -30,7 +30,7 @@ export default () => {
   }])
 
 
-  const [createProduct, { data, loading }] = useMutation(
+  const [createProduct, { loading }] = useMutation(
     CREATE_PRODUCT, {
       context: {hasUpload: true},
       variables: {
@@ -40,11 +40,14 @@ export default () => {
             productDetailsAttributes: trimValues(productDetailsAttributes)
           },
         }
+      },
+      onCompleted({ createProduct: { product } }) {
+        history.push(`/products/${product.urlKey}`)
       }
     });
 
 
-  const { data: subCatData } = useQuery(FETCH_SUB_CATEGORIES)
+  const { data: subCatData } = useQuery(FETCH_SUB_CATEGORIES, { fetchPolicy: 'cache-and-network' })
 
 
   const handleProductAttrChange = ({ target }) => {

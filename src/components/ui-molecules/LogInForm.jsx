@@ -3,6 +3,7 @@ import Input from './Input'
 import { useMutation, useApolloClient } from '@apollo/react-hooks'
 import { LOG_IN_USER } from '../../graphql/queries'
 import useExtractCartCache from '../../custom-hooks/useExtractCartCache';
+import { trimValues } from '../../utils/helperMethods';
 
 export default ({history}) => {
   const [data, setData] = useState({
@@ -17,7 +18,7 @@ export default ({history}) => {
     login,
     { loading, error }
   ] = useMutation(LOG_IN_USER, {
-    variables: { user: data },
+    variables: { user: trimValues(data) },
     onCompleted ({ signInUser: { token, user } }) {
       localStorage.setItem('token', token)
       client.writeData(
@@ -36,7 +37,7 @@ export default ({history}) => {
   const handleChange = ({ target }) => {
     const key = target.name
     const value = target.value
-    setData({ ...data, [key]: value.trim() })
+    setData({ ...data, [key]: value })
   }
 
   const handleSubmit = e => {

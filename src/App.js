@@ -11,6 +11,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 // import './App.css';
 import Header from './components/ui-molecules/Header';
+import Dashboard from "./components/pages/Dashboard";
 import NavBar from './components/ui-molecules/NavBar';
 import LogInPage from './components/pages/LogInPage';
 import { Route, Switch } from 'react-router-dom'
@@ -22,6 +23,7 @@ import EditCategoryPage from './components/pages/EditCategoryPage';
 import HomePage from './components/pages/HomePage';
 import ViewProductPage from './components/pages/ViewProductPage';
 import CartPage from './components/pages/CartPage';
+import CheckOutPage from './components/pages/CheckOutPage';
 
 
 function App() {
@@ -47,8 +49,10 @@ function App() {
         key: 'shop-tight-cache'
       });
 
+      const url = process.env.API_URL
+
       const options = {
-        uri: 'http://localhost:5000/graphql'
+        uri: 'http://api.shop-tight.com/graphql'
       }
       const httpLink = new HttpLink(options)
       
@@ -99,7 +103,7 @@ function App() {
     <div className="App">
       <Header/>
       <NavBar />
-      <ToastContainer autoClose={5000} draggable={true} position="top-right" />
+      <ToastContainer autoClose={5000} draggable={true} position="bottom-left" />
       <Switch>
       <Route path="/registerProduct" component={RegisterProductPage} />
       <Route path="/addCategory" component={AddCategoryPage} />
@@ -108,7 +112,9 @@ function App() {
       <Route path="/signup" component={SignUpPage} />
       <Route path="/products/:urlKey" component={ViewProductPage} />
       <Route path="/login" component={LogInPage} />
+      <Route path="/dashboard" component={Dashboard} />
       <Route path="/cart" component={CartPage} />
+      <Route path="/checkout" component={CheckOutPage} />
       <Route path="/" component={HomePage} exact />
       </Switch>
     </div>

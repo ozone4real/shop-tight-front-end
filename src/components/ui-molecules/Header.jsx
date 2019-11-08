@@ -2,7 +2,7 @@ import React, {Fragment} from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import SearchBar from './SearchBar'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Avatar from '../../assets/icons/avatar'
+import Avatar from '../../assets/icons/avatar2'
 import CartIcon from '../../assets/icons/shopping-cart'
 import { Link } from 'react-router-dom';
 import { useApolloClient } from "@apollo/react-hooks";
@@ -42,7 +42,7 @@ const Header = () => {
                 <Fragment><span>{data.user.firstName}</span>
                 <FontAwesomeIcon icon='caret-down' />
                 <ul>
-                <li><Link to='/'>My Profile</Link></li>
+                <li><Link to='/dashboard/profile'>My Profile</Link></li>
                   <li><Link to='/'>My Orders</Link></li>
                   {
                     data.user.isAdmin &&
@@ -65,7 +65,7 @@ const Header = () => {
               <span className="cart-items-count">
                 {cartData.userCart.reduce((current, next) => (current + next.quantity), 0)}
                 </span> : ''
-            }
+              }
                 </span>
               <span> My Cart</span>
             </Link>

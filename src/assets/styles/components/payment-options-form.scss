@@ -1,0 +1,26 @@
+.payment-options-form {
+  label {
+    display: flex;
+    input {
+      margin-right: 20px;
+    }
+    h3 {
+      display: inline;
+    }
+    img {
+      width: 60px;
+      height: 20px;
+    } 
+  }
+  button {
+    padding: 13px;
+    color: white;
+    background: #6b3368;
+    width: 60%;
+    font-weight: bold;
+    display: block;
+    border-radius: 8px;
+    margin: auto;
+  }
+
+}

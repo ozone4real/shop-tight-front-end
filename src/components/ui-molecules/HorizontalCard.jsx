@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
+import { Link } from 'react-router-dom';
 import { priceInNaira, optionsArrayFromNum, truncateText } from '../../utils/helperMethods';
-import { useMutation, useApolloClient, useQuery } from '@apollo/react-hooks'
+import { useMutation, useApolloClient } from '@apollo/react-hooks'
 import GarbageIcon from  '../../assets/icons/garbage';
-import { UPDATE_CART_QUANTITY, REMOVE_PRODUCT_FROM_CART, USER, USER_CART } from '../../graphql/queries'
+import { UPDATE_CART_QUANTITY, REMOVE_PRODUCT_FROM_CART, USER_CART } from '../../graphql/queries'
 import Select from '../ui-molecules/Select';
 
-export default ({ product, quantity, discountedSubTotalForProduct }) => {
-  const { data: { user } } = useQuery(USER)
+export default ({ product, quantity, discountedSubTotalForProduct, user }) => {
   const [ quantitySelected, setQuantitySelected ] = useState(quantity)
   const client = useApolloClient()
   const { userCart } = client.readQuery({ query: USER_CART})
@@ -56,8 +56,9 @@ export default ({ product, quantity, discountedSubTotalForProduct }) => {
     const cartClone = [...userCart]
     let itemToUpdate = cartClone.find((item) => item.productDetail.id === product.id)
     const index = cartClone.indexOf(itemToUpdate)
-    itemToUpdate = {...itemToUpdate, quantity: parseInt(value)};
-    console.log(itemToUpdate)
+    itemToUpdate = {...itemToUpdate, quantity: parseInt(value) , 
+      discountedSubTotalForProduct: product.discountedPrice * parseInt(value)
+    };
     cartClone[index] = itemToUpdate
     client.writeData({
       data: {
@@ -86,7 +87,7 @@ export default ({ product, quantity, discountedSubTotalForProduct }) => {
         <img src={product.images[0]} alt={product.productName} />
       </div>
       <div className="product-details">
-       <div><h3>{ truncateText(`${product.brand} ${product.productName}`, 67) }</h3></div> 
+       <div><h3><Link to={`/products/${product.urlKey}`} >{ truncateText(`${product.brand} ${product.productName}`, 67) }</Link></h3></div> 
         {product.size && <div className="text-lighter"><span className="text-md item-title">SIZE:</span>{product.size} </div>}
         {product.color && <div className="text-lighter"><span className="text-md item-title">COLOR:</span>{product.color} </div>}
         <div className="actions-sec">
@@ -98,6 +99,7 @@ export default ({ product, quantity, discountedSubTotalForProduct }) => {
       </div>
       <div className="unit-price-sec">
         <h3>{priceInNaira(product.discountedPrice)}</h3>
+        <span className="line-through text-lighter">{priceInNaira(product.price)}</span>
       </div>
       <div className="total-price-sec">
         <h3>{priceInNaira(discountedSubTotalForProduct)}</h3>

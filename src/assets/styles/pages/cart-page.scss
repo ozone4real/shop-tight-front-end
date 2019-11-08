@@ -1,4 +1,23 @@
 .cart-page {
+  .empty-cart-card {
+    width: 300px;
+    margin: 15% auto;
+    text-align: center;
+
+    svg {
+      width: 80px;
+      height: 80px;
+    }
+    a {
+      color: white;
+      background: #6b3368;
+      padding: 8px;
+      display: block;
+      width: 80%;
+      margin: 20px auto;
+      border-radius: 8px;
+    }
+  }
   .main-sec {
     display: grid;
     grid-template-columns: 75% 25%;

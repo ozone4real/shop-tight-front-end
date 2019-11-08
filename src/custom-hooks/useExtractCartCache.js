@@ -3,13 +3,18 @@ import { useMutation, useApolloClient, useLazyQuery } from '@apollo/react-hooks'
 
 
 export default (history) => {
+  const redirectUrl = localStorage.getItem('redirect_url')
+  const redirect = () => {
+    localStorage.removeItem('redirect_url')
+    history.push(redirectUrl || '/')
+  }
   const [ refetchCart ] = useLazyQuery(USER_CART, {
     fetchPolicy: 'cache-and-network',
      onCompleted() {
-      history.push(localStorage.getItem('redirect_url') || '/')
+      redirect()
      },
      onError() {
-      history.push(localStorage.getItem('redirect_url') || '/')
+      redirect()
      }
     })
   const client = useApolloClient();
@@ -19,10 +24,10 @@ export default (history) => {
       client.writeData({
         data: { userCart: data.addProductToCart.userCart}
       })
-      history.push(localStorage.getItem('redirect_url') || '/')
+      redirect()
     },
     onError() {
-      history.push(localStorage.getItem('redirect_url') || '/')
+      redirect()
     }
   })
   return () => {

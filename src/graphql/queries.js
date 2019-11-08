@@ -16,6 +16,17 @@ export const SIGN_UP_USER = gql`
     }
   }`
 
+export const PAYMENT_OPTIONS = gql`
+  {
+    paymentOptions {
+    id
+    paymentType
+    picture
+    description
+  }
+  }
+`
+
 export const ADD_PRODUCT_TO_CART = gql`
   mutation addProductToCart($input: AddProductToCartInput!){
     addProductToCart(input: $input){
@@ -121,6 +132,29 @@ export const CREATE_SUB_CATEGORY = gql`
     }
   }`
 
+export const UPDATE_PROFILE = gql`
+  mutation updateUser($user: UpdateUserInput!) {
+  updateUser(input: $user) {
+    message
+  }
+}
+`
+
+export const PROFILE = gql`
+{
+	profile {
+			email
+			firstName
+			lastName
+			address
+			city
+			state
+			phone
+			country
+			postalCode
+	}
+}
+`
 
 export const USER_CART = gql`
   {

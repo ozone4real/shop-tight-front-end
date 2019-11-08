@@ -1,56 +1,66 @@
 import React, { useState, Fragment } from 'react'
 import Input from './Input'
-import { signUpFormSchema, validationMessages } from '../../utils/validator'
+import useExtractCartCache from '../../custom-hooks/useExtractCartCache';
 import { useMutation, useApolloClient } from '@apollo/react-hooks'
+import usePrepareUserData from '../../custom-hooks/usePrepareUserData';
 import { SIGN_UP_USER } from '../../graphql/queries'
+import { trimValues } from '../../utils/helperMethods';
 
 export default ({history}) => {
-  const [data, setData] = useState({
+  const { handleBlur, handleChange, data, errors, setErrors } = usePrepareUserData({
     email: '',
     password: '',
     firstName: '',
     lastName: ''
-  })
+  });
+
+  const extractCache = useExtractCartCache(history);
+  // const [data, setData] = useState({
+  //   email: '',
+  //   password: '',
+  //   firstName: '',
+  //   lastName: ''
+  // })
 
   const client = useApolloClient()
 
-  const [errors, setErrors] = useState({})
+  // const [errors, setErrors] = useState({})
   const [
     signup,
     { loading }
   ] = useMutation(SIGN_UP_USER, {
-    variables: { user: { userAttributes: data } },
+    variables: { user: { userAttributes: trimValues(data) } },
     onCompleted ({ createUser: { token, user } }) {
       
-      // client.writeData({ user: { isLoggedIn: true, data: user } })
+      localStorage.setItem('token', token)
       client.writeData(
         {
           data: {
             user: {...user, isLoggedIn: true}
           }
         })
-        history.push(localStorage.getItem('redirect_url') || '/')
+       extractCache()
     },
     onError (e) {
       if (e.message.match(/422/)) setErrors({ email: 'Email already taken' })
     }
   })
 
-  const handleChange = ({ target }) => {
-    const key = target.name
-    const value = target.value
-    setErrors({ ...errors, [key]: '' })
-    setData({ ...data, [key]: value.trim() })
-  }
+  // const handleChange = ({ target }) => {
+  //   const key = target.name
+  //   const value = target.value
+  //   setErrors({ ...errors, [key]: '' })
+  //   setData({ ...data, [key]: value.trim() })
+  // }
 
-  const handleBlur = ({ target }) => {
-    const key = target.name
-    const value = target.value
-    if (!value) { return setErrors({ ...errors, [key]: `${key} cannot be blank` }) }
-    if (!signUpFormSchema[key].test(value)){
-      setErrors({ ...errors, [key]: validationMessages[key] })
-    }
-  }
+  // const handleBlur = ({ target }) => {
+  //   const key = target.name
+  //   const value = target.value
+  //   if (!value) { return setErrors({ ...errors, [key]: `${key} cannot be blank` }) }
+  //   if (!signUpFormSchema[key].test(value)){
+  //     setErrors({ ...errors, [key]: validationMessages[key] })
+  //   }
+  // }
 
   const handleSubmit = e => {
     e.preventDefault()

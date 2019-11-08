@@ -1,0 +1,36 @@
+.profile-form {
+  display: flex;
+  flex-flow: row wrap;
+  button {
+    padding: 13px;
+    color: white;
+    background: #6b3368;
+    width: 60%;
+    font-weight: bold;
+    display: block;
+    border-radius: 8px;
+    margin: auto;
+  }
+  .input-field {
+    margin: 0 7px 20px 7px;
+    label {
+      font-weight: bold;
+    }
+    input {
+      display: block;
+      width: 100%;
+      border-width: 0 0 1px 0;
+      outline: none;
+      padding: 10px 0;
+      opacity: 0.6;
+      font-size: inherit;
+    }
+    input:disabled {
+      color: black;
+    }
+    input:focus {
+      outline: none;
+      opacity: 1;
+    }
+  }
+}
