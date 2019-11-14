@@ -52,7 +52,7 @@ function App() {
       });
 
       const options = {
-        uri: 'http://api.shop-right.com/graphql'
+        uri: 'http://api.shop-tight.com/graphql'
       }
       const httpLink = new HttpLink(options)
       
