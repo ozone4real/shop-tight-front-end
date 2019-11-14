@@ -52,7 +52,7 @@ function App() {
       });
 
       const options = {
-        uri: 'http://api.shop-tight.com/graphql'
+        uri: process.env.api_url || 'http://localhost:5000/graphql'
       }
       const httpLink = new HttpLink(options)
       
