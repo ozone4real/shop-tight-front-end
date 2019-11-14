@@ -43,7 +43,7 @@ const Header = () => {
                 <FontAwesomeIcon icon='caret-down' />
                 <ul>
                 <li><Link to='/dashboard/profile'>My Profile</Link></li>
-                  <li><Link to='/'>My Orders</Link></li>
+                  <li><Link to='/dashboard/orders'>My Orders</Link></li>
                   {
                     data.user.isAdmin &&
                     <Fragment> 

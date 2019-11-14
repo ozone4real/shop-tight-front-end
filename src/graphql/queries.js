@@ -1,5 +1,5 @@
 import gql from 'graphql-tag';
-import { CART_FRAGMENT } from './fragments'
+import { CART_FRAGMENT, PRODUCT_COLLECTION_FRAGMENT } from './fragments'
 
 export const SIGN_UP_USER = gql`
   mutation createUser($user: CreateUserInput!) {
@@ -15,6 +15,7 @@ export const SIGN_UP_USER = gql`
       message
     }
   }`
+
 
 export const PAYMENT_OPTIONS = gql`
   {
@@ -33,9 +34,42 @@ export const ADD_PRODUCT_TO_CART = gql`
       userCart {
         ...UserCart
     }
+    totalPriceWithoutCharges,
+    totalShippingFee
     }
 }
 ${CART_FRAGMENT}
+`
+
+export const CART_WITH_COSTS = gql`
+{
+  userCart {
+    ...UserCart
+  }
+  totalPriceWithoutCharges,
+  totalShippingFee
+}
+${CART_FRAGMENT}
+`
+
+export const USER_ORDERS = gql`
+  {
+  orders {
+    amountPayable
+    id
+    totalQuantity
+    status
+    orderDetails {
+      quantity
+      productDetail {
+        product {
+          images
+        }
+      }
+    }
+    createdAt
+  }
+}
 `
 
 export const UPDATE_CART_QUANTITY = gql`
@@ -43,7 +77,9 @@ export const UPDATE_CART_QUANTITY = gql`
   updateCartQuantity(input: $input) {
      userCart {
         ...UserCart
-    }
+    },
+    totalPriceWithoutCharges,
+    totalShippingFee
   }
 }
 ${CART_FRAGMENT}
@@ -68,6 +104,8 @@ export const REMOVE_PRODUCT_FROM_CART = (id) => (
       userCart {
         ...UserCart
     }
+      totalPriceWithoutCharges,
+      totalShippingFee,
       message
     }
 }
@@ -165,6 +203,27 @@ export const USER_CART = gql`
 ${CART_FRAGMENT}
 `
 
+export const CREATE_ORDER = gql`
+  mutation createOrder ($input: CreateOrderWithoutPaymentInput!){
+    createOrderWithoutPayment(input: $input) {
+        order {
+            id
+        }
+    }
+}
+`
+
+export const USER_CART_FOR_CHECK_OUT = gql`
+  {
+    userCart {
+      ...UserCart
+    }
+    totalPriceWithoutCharges
+    totalShippingFee
+  }
+  ${CART_FRAGMENT}
+`
+
 export const FETCH_SUB_CATEGORIES = gql`
 {
 subCategories {
@@ -244,21 +303,69 @@ export const PRODUCT = (id) => (
 }
 `)
 
+export const VERIFY_USER = gql`
+  mutation verifyUser($input: VerifyUserInput!) {
+    verifyUser(input: $input) {
+      token
+    }
+  }
+`
+
+
+export const USER_ORDER = (id) => (
+  gql`
+  {
+    order(id: ${id}) {
+      id
+      amountPayable
+      totalQuantity
+      status
+      paymentMade
+      payment {
+        paymentType
+      }
+      orderDetails {
+        totalPrice
+        id
+        quantity
+        status
+        productDetail {
+          id
+          color
+          size
+          price
+          product {
+            productName,
+            images,
+            urlKey
+          }
+        }
+      }
+      createdAt
+    }
+  }
+  `
+  )
+  
+
 export const PRODUCT_COLLECTION = (page=1, limit=7, sortParam) => (
   gql`
 {
   productCollection(page: ${page}, limit: ${limit}, sortParam: ${sortParam}) {
-    brand
-    productName
-    images
-    discount
-    productDescription
-    urlKey
-    productDetails {
-      id
-      discountedPriceInNaira
-      priceInNaira
+    ...Collection
+  }
+}
+${PRODUCT_COLLECTION_FRAGMENT}
+`
+)
+
+export const BEST_SELLING_PRODUCTS = (page=1, limit=6) => (
+  gql`
+  {
+    bestSellingProducts(page: ${page}, limit: ${limit}) {
+      ...Collection
     }
   }
-}`
+  ${PRODUCT_COLLECTION_FRAGMENT}
+  `
 )

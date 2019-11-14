@@ -24,6 +24,8 @@ import HomePage from './components/pages/HomePage';
 import ViewProductPage from './components/pages/ViewProductPage';
 import CartPage from './components/pages/CartPage';
 import CheckOutPage from './components/pages/CheckOutPage';
+import OrderDetailsPage from './components/pages/OrderDetailsPage';
+import VerifyUser from './components/pages/VerifyUser';
 
 
 function App() {
@@ -49,10 +51,8 @@ function App() {
         key: 'shop-tight-cache'
       });
 
-      const url = process.env.API_URL
-
       const options = {
-        uri: 'http://api.shop-tight.com/graphql'
+        uri: 'http://api.shop-right.com/graphql'
       }
       const httpLink = new HttpLink(options)
       
@@ -112,8 +112,10 @@ function App() {
       <Route path="/signup" component={SignUpPage} />
       <Route path="/products/:urlKey" component={ViewProductPage} />
       <Route path="/login" component={LogInPage} />
+      <Route path="/orders/:id" component={OrderDetailsPage} />
       <Route path="/dashboard" component={Dashboard} />
       <Route path="/cart" component={CartPage} />
+      < Route path="/verify" component={VerifyUser} />
       <Route path="/checkout" component={CheckOutPage} />
       <Route path="/" component={HomePage} exact />
       </Switch>

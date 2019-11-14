@@ -15,7 +15,7 @@
       }
     }
     .horizontal-card {
-      height: 130px;
+      max-height: 150px;
     }
     
     h2 {
@@ -40,9 +40,6 @@
       margin-bottom: 30px;
       .input-field {
         width: 47%;
-        input {
-          border-bottom: 1px solid #d8d8d8;
-        }
       }
     }
   }

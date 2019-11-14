@@ -1,0 +1,43 @@
+.orders-container {
+  h2 {
+    text-align: center;
+    margin-top: 0;
+  }
+  h4 {
+    margin-bottom: 0;
+  }
+  .orders-list{
+    display: flex;
+    flex-flow: row wrap;
+    .order-card {
+      background: white;
+      padding: 20px;
+      width: 31%;
+      margin-right: 20px;
+      box-shadow: 0 0.125rem 0.25rem 0 rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      .images-container {
+        display: flex;
+        flex-flow: row wrap;
+        margin-bottom: -10px;
+        width: 100%;
+        img {
+          width: 40px;
+          height: 40px;
+          object-fit: contain;
+          margin-bottom: 10px;
+        }
+      }
+      a {
+        text-decoration: underline;
+      }
+      a:hover {
+        color: #6b3368;
+      }
+    }
+
+    .order-card:hover {
+      box-shadow : 0 0.125rem 0.8rem 0 rgba(0, 0, 0, 0.1);
+    }
+  } 
+}

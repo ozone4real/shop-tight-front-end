@@ -1,9 +1,8 @@
 .product-card-sm {
-  width: 19%;
   background: white;
   height: 300px;
   padding: 10px;
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-right: 1px solid rgba(0, 0, 0, 0.06);
   .product-img {
     height: 70%;
     img {
@@ -21,8 +20,20 @@
     padding: 0;
     margin: 0;
   }
+  .qty-sold {
+    padding: 2px;
+    .badge {
+      background: #6b3368;
+      padding: 3px;
+      display: inline-block;
+      border-radius: 4px;
+      color: white;
+      font-weight: bold;
+    }
+  }
+  
 }
 
 .product-card-sm:hover {
-  border-color: rgba($color: #6b3368, $alpha: 0.5);
+  border: 1px solid rgba($color: #6b3368, $alpha: 0.5);
 }

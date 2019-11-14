@@ -9,7 +9,7 @@ export default () => {
   data && console.log(normalizeProductData(data.productCollection[0]));
 
   return (
-    <section className="top-deals-sec" >
+    <section className="products-sec top-deals-sec" >
       <h2 className="sec-heading">Top deals</h2>
       <div className="top-deals-container">
       {data && data.productCollection.map((product) => (

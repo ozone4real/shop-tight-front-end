@@ -5,17 +5,19 @@ import { priceInNaira, optionsArrayFromNum, truncateText } from '../../utils/hel
 import { useMutation, useApolloClient } from '@apollo/react-hooks'
 import GarbageIcon from  '../../assets/icons/garbage';
 import { UPDATE_CART_QUANTITY, REMOVE_PRODUCT_FROM_CART, USER_CART } from '../../graphql/queries'
-import Select from '../ui-molecules/Select';
+import Select from './Select';
 
 export default ({ product, quantity, discountedSubTotalForProduct, user }) => {
   const [ quantitySelected, setQuantitySelected ] = useState(quantity)
   const client = useApolloClient()
   const { userCart } = client.readQuery({ query: USER_CART})
   const [ updateCartQuantity ] = useMutation( UPDATE_CART_QUANTITY, {
-    onCompleted({updateCartQuantity: { userCart }}) {
+    onCompleted({updateCartQuantity: { userCart, totalShippingFee, totalPriceWithoutCharges }}) {
       client.writeData({
         data: {
-          userCart
+          userCart,
+          totalShippingFee,
+          totalPriceWithoutCharges
         }
       })
       toast.success('Quantity successfully updated')
@@ -26,10 +28,13 @@ export default ({ product, quantity, discountedSubTotalForProduct, user }) => {
   })
 
   const [ removeProductFromCart, { loading } ] = useMutation(REMOVE_PRODUCT_FROM_CART(product.id), {
-    onCompleted({removeProductFromCart: {message, userCart}}) {
+    onCompleted({removeProductFromCart: {message, userCart, totalShippingFee, totalPriceWithoutCharges}}) {
       client.writeData({
         data: {
-          userCart
+          userCart,
+          totalShippingFee,
+          totalPriceWithoutCharges
+
         }
       })
       toast.success(message)

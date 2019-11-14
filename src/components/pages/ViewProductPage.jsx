@@ -170,6 +170,7 @@ export default ({ match: {params: { urlKey }} }) => {
         {images.map((img, index) => (
           <img src={img} key={index} alt="productName" 
           onClick={() => handleImgSelect(index)}
+          onMouseOver={() => handleImgSelect(index)}
            />
         ))}
       </div>

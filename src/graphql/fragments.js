@@ -28,3 +28,20 @@ fragment UserCart on Cart {
   }
 }
 `
+
+export const PRODUCT_COLLECTION_FRAGMENT = gql`
+  fragment Collection on Product {
+    brand
+    productName
+    images
+    discount
+    productDescription
+    urlKey
+    quantitySold
+    productDetails {
+      id
+      discountedPriceInNaira
+      priceInNaira
+    }
+  } 
+`

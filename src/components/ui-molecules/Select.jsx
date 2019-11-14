@@ -8,6 +8,6 @@ export default ({ error, options= [], label, required=true, ...rest }) => (
       (option) => <option key={option.id} value={option.value} required={required}>{option.name}</option>
       )}
   </select>
-  { error && <label><small className="text-danger">{error}</small></label>}
+  { error && <label><small className="text-danger">{error}</small></label> }
   </div>
 )

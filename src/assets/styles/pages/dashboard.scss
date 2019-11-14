@@ -1,5 +1,9 @@
 .dashboard-container {
   display: grid;
   grid-template-columns: 23% 77%;
-  margin-top: 40px;
+  margin-top: 30px;
+
+  .left-sec, .right-sec {
+    margin: 20px;
+  }
 }

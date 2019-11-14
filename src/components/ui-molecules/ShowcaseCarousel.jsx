@@ -32,8 +32,8 @@ export default () => {
   const currentCat  = selectedCategories[currentIndex]
   const position = Math.floor(Math.random() * descPositions.length)
 
-  return (<section className="showcase-carousel">
-
+  return (
+    <section className="showcase-carousel">
       {selectedCategories.map((cat, index) => (
       <Link to={`/categories/${cat.urlKey}`} key={index}>
       <div className={`carousel-item ${index === currentIndex && 'is-current'}`} >

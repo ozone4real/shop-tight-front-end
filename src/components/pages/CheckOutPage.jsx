@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import ProfileForm from '../ui-molecules/ProfileForm';
 import CartItems from '../ui-molecules/CartItems';
-import { USER_CART, USER } from '../../graphql/queries';
+import { USER_CART_FOR_CHECK_OUT, USER } from '../../graphql/queries';
 import PaymentOptionsForm from '../ui-molecules/PaymentOptionsForm';
+import OrderSummaryCard from '../ui-molecules/OrderSummaryCard';
 
 export default ({ history }) => {
-  const { data, loading } = useQuery(USER_CART);
+  const { data, loading } = useQuery(USER_CART_FOR_CHECK_OUT, { fetchPolicy: 'cache-and-network' });
   const { data: { user }} = useQuery(USER);
   const [ profileComplete, setProfileComplete ] = useState(false)
 
@@ -17,6 +18,8 @@ export default ({ history }) => {
       }
     }
   }, [data])
+
+  if(!data) return <div></div>
 
   return (
     <div className="check-out-page">
@@ -32,12 +35,13 @@ export default ({ history }) => {
         <hr/>
         <section className={`payment-method-section ${!profileComplete && 'blur'}`}>
           <h2>Select Payment Option</h2>
-          <PaymentOptionsForm profileComplete={profileComplete} />
+          <PaymentOptionsForm profileComplete={profileComplete} history={history} />
         </section>
         </div>
         <div className="right-sec">
           <h2>Your Order </h2>
           <CartItems data={data} user={user} />
+          <OrderSummaryCard data={data} />
         </div>
         </section>
       </div>

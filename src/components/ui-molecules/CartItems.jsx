@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import HorizontalCard from '../ui-molecules/HorizontalCard';
+import CartItemCard from '../ui-molecules/CartItemCard';
 import { normalizeCartProductData } from '../../utils/helperMethods';
 import CartTableHeader from '../ui-molecules/CartTableHeader';
 
@@ -7,7 +7,7 @@ export default ({ data, user }) => (
   <Fragment>
   <CartTableHeader />
   {data.userCart.map((item) => (
-    <HorizontalCard
+    <CartItemCard
     user={user} 
     key={item.productDetail.id}
     quantity={item.quantity}
