@@ -28,6 +28,30 @@ export const PAYMENT_OPTIONS = gql`
   }
 `
 
+export const PRODUCT_FOR_UPDATE = (id) => (
+  gql`
+  {
+  product(id: ${id}) {
+    brand,
+		productName,
+		productDescription,
+    productSize,
+    unitWeight,
+    discount,
+    productDetails {
+      id
+      size
+      color
+      price
+      quantityInStock
+      }
+    subCategory {
+      id
+    }
+  }
+}
+`)
+
 export const ADD_PRODUCT_TO_CART = gql`
   mutation addProductToCart($input: AddProductToCartInput!){
     addProductToCart(input: $input){
@@ -268,6 +292,20 @@ mutation createProduct($product: CreateProductInput!) {
   }
 }`
 
+export const UPDATE_PRODUCT = gql`
+  mutation updateProduct($product: UpdateProductInput!) {
+  updateProduct(input: $product) {
+    product {
+      productName,
+      urlKey,
+      productDetails {
+        id
+      }  
+    }
+  }
+}
+`
+
 export const PRODUCT = (id) => (
   gql`
   {
@@ -275,6 +313,7 @@ export const PRODUCT = (id) => (
       productName
       productDescription
       images
+      productSize
       brand
       shippingFee
       discount

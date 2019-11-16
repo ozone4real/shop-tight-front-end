@@ -2,6 +2,8 @@ import React, { useState, useEffect, Fragment } from 'react';
 import { useQuery } from "@apollo/react-hooks";
 import { Link } from 'react-router-dom'
 import { CATEGORIES } from '../../graphql/queries'
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css'
 
 
 export default () => {
@@ -41,9 +43,11 @@ export default () => {
       {cat.categoryDescription}
       <button>Shop now</button>
       </h1>
-      <img
+      <LazyLoadImage
        src={cat.images && cat.images[currentCat.images.length - 1]}
        alt='carousel'
+       
+       width="100%"
       />
       </div>
       </Link>

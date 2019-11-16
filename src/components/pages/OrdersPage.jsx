@@ -6,7 +6,7 @@ import format from 'date-fns/format'
 
 export default () => {
   const { data: userOrdersData } = useQuery(USER_ORDERS, { fetchPolicy: 'cache-and-network'})
-  const { data: userProfileData } = useQuery(PROFILE)
+  // const { data: userProfileData } = useQuery(PROFILE)
   if(!userOrdersData) return <div></div>
   return (
     <div className="orders-container">

@@ -42,6 +42,7 @@ export default ({history}) => {
        extractCache()
     },
     onError (e) {
+      console.log(e.message)
       if (e.message.match(/422/)) setErrors({ email: 'Email already taken' })
     }
   })

@@ -5,8 +5,8 @@ import { priceInNaira } from '../../utils/helperMethods';
 import { Link } from 'react-router-dom';
 
 export default ({ match: { params: { id } } }) => {
-  const { data } = useQuery(USER_ORDER(id), { fetchPolicy: 'cache-and-network'});
-  const { data: profileData } = useQuery(PROFILE, { fetchPolicy: 'cache-and-network'});
+  const { data } = useQuery(USER_ORDER(id), { fetchPolicy: 'no-cache'});
+  const { data: profileData } = useQuery(PROFILE);
   console.log(data, profileData)
   if(!data || !(profileData && profileData.profile)) return <div></div>
   const {

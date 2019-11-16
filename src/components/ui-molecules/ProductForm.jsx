@@ -2,15 +2,15 @@ import React, { useState, Fragment } from 'react';
 import { useMutation, useQuery } from '@apollo/react-hooks';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import GarbageIcon from  '../../assets/icons/garbage';
-import {FETCH_SUB_CATEGORIES, CREATE_PRODUCT} from '../../graphql/queries';
+import {FETCH_SUB_CATEGORIES, UPDATE_PRODUCT, CREATE_PRODUCT} from '../../graphql/queries';
 import Select from './Select';
 import Input from './Input';
 import ProductDetailsFields from './ProductDetailsFields';
 import { trimValues } from '../../utils/helperMethods'
 
-export default ({ history }) => {
+export default ({ history, action="create" , initialProductState, initialProductDetailsState }) => {
    
-  const [productAttributes, setProductAttributes] = useState({
+  const [productAttributes, setProductAttributes] = useState(initialProductState || {
     subCategoryId: '',
 		brand: '',
 		productName: '',
@@ -22,7 +22,7 @@ export default ({ history }) => {
   })
 
 
-  const [productDetailsAttributes, setProductDetailsAttributes] = useState([{
+  const [productDetailsAttributes, setProductDetailsAttributes] = useState(initialProductDetailsState || [{
     color: '',
 		price: '',
     quantityInStock: '',
@@ -31,7 +31,7 @@ export default ({ history }) => {
 
 
   const [createProduct, { loading }] = useMutation(
-    CREATE_PRODUCT, {
+    initialProductState ? UPDATE_PRODUCT : CREATE_PRODUCT, {
       context: {hasUpload: true},
       variables: {
         product: { 
@@ -41,8 +41,9 @@ export default ({ history }) => {
           },
         }
       },
-      onCompleted({ createProduct: { product } }) {
-        history.push(`/products/${product.urlKey}`)
+      onCompleted(data) {
+        const urlKey = action === "create" ? data.creatProduct.product.urlKey : data.updateProduct.product.urlKey 
+        history.push(`/products/${urlKey}`)
       }
     });
 
@@ -100,6 +101,7 @@ export default ({ history }) => {
       <div className="product-fields">
      <Select
       onChange={handleProductAttrChange}
+      value={productAttributes.subCategoryId}
       options={subCatData && subCatData.subCategories.map((item) => (
         { name: item.categoryName, value: item.id  })
       )}

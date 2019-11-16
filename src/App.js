@@ -26,6 +26,7 @@ import CartPage from './components/pages/CartPage';
 import CheckOutPage from './components/pages/CheckOutPage';
 import OrderDetailsPage from './components/pages/OrderDetailsPage';
 import VerifyUser from './components/pages/VerifyUser';
+import EditProductPage from './components/pages/EditProductPage';
 
 
 function App() {
@@ -52,7 +53,7 @@ function App() {
       });
 
       const options = {
-        uri: 'http://api.shop-tight.com/graphql'
+        uri: process.env.REACT_APP_API_URL || 'http://localhost:5000/graphql'
       }
       const httpLink = new HttpLink(options)
       
@@ -110,6 +111,7 @@ function App() {
       <Route path="/categories/:url_key/edit" component={EditCategoryPage} />
       <Route path="/addSubCategory" component={AddSubCategoryPage} />
       <Route path="/signup" component={SignUpPage} />
+      <Route path="/products/:urlKey/edit" component={EditProductPage} />
       <Route path="/products/:urlKey" component={ViewProductPage} />
       <Route path="/login" component={LogInPage} />
       <Route path="/orders/:id" component={OrderDetailsPage} />
