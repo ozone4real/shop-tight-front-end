@@ -1,10 +1,11 @@
-import React, { useState, Fragment } from 'react'
+import React, { Fragment } from 'react'
 import Input from './Input'
 import useExtractCartCache from '../../custom-hooks/useExtractCartCache';
 import { useMutation, useApolloClient } from '@apollo/react-hooks'
 import usePrepareUserData from '../../custom-hooks/usePrepareUserData';
-import { SIGN_UP_USER } from '../../graphql/queries'
+import { SIGN_UP_USER } from '../../graphql/queries';
 import { trimValues } from '../../utils/helperMethods';
+import { toast } from 'react-toastify';
 
 export default ({history}) => {
   const { handleBlur, handleChange, data, errors, setErrors } = usePrepareUserData({
@@ -40,6 +41,7 @@ export default ({history}) => {
           }
         })
        extractCache()
+       toast.success('Welcome to Shop Right. A verification link has been sent to your email. Please follow the link to verify your account.')
     },
     onError (e) {
       console.log(e.message)

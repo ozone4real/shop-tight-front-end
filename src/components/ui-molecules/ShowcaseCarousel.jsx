@@ -2,12 +2,12 @@ import React, { useState, useEffect, Fragment } from 'react';
 import { useQuery } from "@apollo/react-hooks";
 import { Link } from 'react-router-dom'
 import { CATEGORIES } from '../../graphql/queries'
-import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css'
 
 
 export default () => {
   const [ currentIndex, setCurrentIndex ] = useState(0);
+  const [loadedImages, setLoadedImages ] = useState(0);
   const { data, loading } = useQuery(CATEGORIES);
 
   useEffect(() => {
@@ -20,6 +20,10 @@ export default () => {
   const selectedCategories = data.categories.filter(({categoryName}) => (
     ["Phones And Tablets", "Computers", "Women's shoes" ].includes(categoryName)) 
   );
+
+  const handleLoad = () => {
+    setLoadedImages(loadedImages + 1)
+  }
 
   const descPositions = [
     {left: 0, top: '25%'},
@@ -37,16 +41,18 @@ export default () => {
   return (
     <section className="showcase-carousel">
       {selectedCategories.map((cat, index) => (
-      <Link to={`/categories/${cat.urlKey}`} key={index}>
+      <Link to={`/categories/${cat.urlKey}`} key={index} style={
+        { display: loadedImages < selectedCategories.length  ? 'none' : 'block' }
+      }>
       <div className={`carousel-item ${index === currentIndex && 'is-current'}`} >
       <h1 className="desc" style={descPositions[position]}>
       {cat.categoryDescription}
       <button>Shop now</button>
       </h1>
-      <LazyLoadImage
+      <img
        src={cat.images && cat.images[currentCat.images.length - 1]}
        alt='carousel'
-       
+       onLoad={handleLoad}
        width="100%"
       />
       </div>

@@ -1,13 +1,10 @@
 import { USER_CART, ADD_PRODUCT_TO_CART } from '../graphql/queries';
 import { useMutation, useApolloClient, useLazyQuery } from '@apollo/react-hooks';
-import { toast } from 'react-toastify';
-
 
 export default (history) => {
   const redirectUrl = localStorage.getItem('redirect_url')
   const redirect = () => {
     localStorage.removeItem('redirect_url')
-    toast.success('Welcome to Shop Right. A verification link has been sent to your email. Please follow the link to verify your account.')
     history.push(redirectUrl || '/')
   }
   const [ refetchCart ] = useLazyQuery(USER_CART, {
