@@ -264,9 +264,14 @@ export const CATEGORY =  gql`
       urlKey
       categoryName
       categoryDescription
-      images
+      images,
+      subCategories {
+        categoryName
+        urlKey
+      }
   }
 `
+ 
 
 export const UPDATE_CATEGORY = gql`
   mutation updateCategory($category: UpdateCategoryInput!) {
@@ -407,4 +412,38 @@ export const BEST_SELLING_PRODUCTS = (page=1, limit=6) => (
   }
   ${PRODUCT_COLLECTION_FRAGMENT}
   `
+)
+
+export const CATEGORY_PRODUCTS = (id, page=1) => (
+  gql`
+  {
+    category (id: ${id}) {
+      categoryName
+      categoryDescription,
+      subCategories {
+        categoryName
+        urlKey
+      }
+    }
+  categoryProducts(categoryId: ${id}, page: ${page}, limit: 30) {
+    ...Collection
+  }
+}
+${PRODUCT_COLLECTION_FRAGMENT}
+`
+)
+
+export const SUB_CATEGORY_PRODUCTS = (id, page=1) => (
+  gql`
+  {
+    subCategoryProducts(subCategoryId: ${id}, page: ${page}, limit: 30) {
+    ...Collection
+  },
+    subCategory(id: ${id}) {
+        categoryName
+        categoryDescription
+    }
+  }
+${PRODUCT_COLLECTION_FRAGMENT}
+`
 )

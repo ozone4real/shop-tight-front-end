@@ -58,7 +58,7 @@ export default ({ match: { params: { id } } }) => {
             <div className="img-container">
              <img src={productDetail.product.images[0]} alt={productDetail.product.productName} />
             </div>
-            <div class="other-details-sec">
+            <div className="other-details-sec">
             <Link to={`/products/${productDetail.product.urlKey}`} >
             <h3>
               {productDetail.product.productName}

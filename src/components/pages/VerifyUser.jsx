@@ -49,7 +49,7 @@ export default ({ history, location }) => {
   }, [])
 
   return (
-    <div class="container">
+    <div className="container">
       <h2> ......Verifying your account </h2>
     </div>
   )

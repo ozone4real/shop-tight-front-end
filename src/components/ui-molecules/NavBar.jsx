@@ -20,7 +20,7 @@ const NavBar = () => {
         {cat.categoryName}
         </NavLink>
         <div className="subCat-link">
-          {cat.subCategories.map((subCat) => <Link to={`/sub-categories/${subCat.urlKey}`} key={subCat.id}>{subCat.categoryName}</Link>)}
+          {cat.subCategories.map((subCat) => <Link to={`/categories/${cat.urlKey}/${subCat.urlKey}`} key={subCat.id}>{subCat.categoryName}</Link>)}
         </div>
         </div>
       ))}

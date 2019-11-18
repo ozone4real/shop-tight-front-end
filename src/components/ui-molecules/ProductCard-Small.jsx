@@ -12,7 +12,7 @@ export default ({product: {images, productName, brand, urlKey, quantitySold, pro
   const {price, discounted} = priceRange(productDetails)
   return (
   <Link to={`/products/${urlKey}`} className="product-card product-card-sm">
-    {section === 'best-selling' && <div class="qty-sold"><span class="text-sm badge">{quantitySold} sold</span></div>}
+    {section === 'best-selling' && <div className="qty-sold"><span className="text-sm badge">{quantitySold} sold</span></div>}
     <div className="product-img">
     {loading && '...loading'}
     <img src={images[0]} alt="PRODUCT" onLoad={handleLoad} style= {{visibility: loading ? 'hidden' : 'visible' }} />

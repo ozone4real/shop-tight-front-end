@@ -18,7 +18,7 @@ export default () => {
   if(loading) return <div></div>
 
   const selectedCategories = data.categories.filter(({categoryName}) => (
-    ["Phones And Tablets", "Computers", "Women's shoes" ].includes(categoryName)) 
+    ["Phones And Tablets", "Computers", "Women's clothing" ].includes(categoryName)) 
   );
 
   const handleLoad = () => {

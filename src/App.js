@@ -27,6 +27,7 @@ import CheckOutPage from './components/pages/CheckOutPage';
 import OrderDetailsPage from './components/pages/OrderDetailsPage';
 import VerifyUser from './components/pages/VerifyUser';
 import EditProductPage from './components/pages/EditProductPage';
+import CategoryPage from './components/pages/CategoryPage';
 
 
 function App() {
@@ -116,6 +117,7 @@ function App() {
       <Route path="/login" component={LogInPage} />
       <Route path="/orders/:id" component={OrderDetailsPage} />
       <Route path="/dashboard" component={Dashboard} />
+      <Route path="/categories/:urlKey" component={CategoryPage} />
       <Route path="/cart" component={CartPage} />
       < Route path="/verify" component={VerifyUser} />
       <Route path="/checkout" component={CheckOutPage} />

@@ -42,7 +42,7 @@ export default ({ history, action="create" , initialProductState, initialProduct
         }
       },
       onCompleted(data) {
-        const urlKey = action === "create" ? data.creatProduct.product.urlKey : data.updateProduct.product.urlKey 
+        const urlKey = action === "create" ? data.createProduct.product.urlKey : data.updateProduct.product.urlKey 
         history.push(`/products/${urlKey}`)
       }
     });
