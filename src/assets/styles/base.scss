@@ -14,6 +14,26 @@ body {
   box-sizing: border-box; 
 }
 
+.App {
+  position: relative;
+  min-height: 100vh;
+}
+
+main {
+  padding-bottom: 100px;
+}
+
+
+.site-logo {
+  color: #6b3368;
+  font-family: 'Acme', Geneva, Verdana, sans-serif;
+  flex-grow: 1;
+  font-size: 80%;
+  @media (min-width: 768px) {
+    font-size: initial;
+  }
+}
+
 .path-active {
   background: whitesmoke;
 }

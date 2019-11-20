@@ -7,7 +7,9 @@ import {
   faShoppingBasket,
   faShoppingBag,
   faPlusCircle,
-  faTrash
+  faTrash,
+  faEnvelope,
+  faPhone
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add (
@@ -18,7 +20,9 @@ library.add (
   faShoppingBasket,
   faShoppingBag,
   faPlusCircle,
-  faTrash
+  faTrash,
+  faEnvelope,
+  faPhone
 )
 
 

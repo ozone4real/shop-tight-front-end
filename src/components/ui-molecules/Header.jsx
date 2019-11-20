@@ -7,6 +7,7 @@ import CartIcon from '../../assets/icons/shopping-cart'
 import { Link } from 'react-router-dom';
 import { useApolloClient } from "@apollo/react-hooks";
 import { USER, USER_CART } from '../../graphql/queries';
+import SiteLogo from './SiteLogo'
 
 
 const Header = () => {
@@ -24,11 +25,12 @@ const Header = () => {
   return (
     <header>
       <div className='header-container'>
-          <div className='site-logo'>
+        <SiteLogo />
+          {/* <div className='site-logo'>
             <Link to='/' className='no-underline'>
               <h1> <FontAwesomeIcon icon='shopping-bag' /> <span>Shop-right</span></h1>
             </Link>
-          </div>
+          </div> */}
           <div className='search-bar'>
             <SearchBar />
           </div>

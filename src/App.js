@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Fragment } from 'react';
 import { ApolloProvider } from '@apollo/react-hooks';
 import { ApolloClient } from 'apollo-client';
 import { InMemoryCache } from 'apollo-cache-inmemory';
@@ -9,12 +9,11 @@ import { createUploadLink } from 'apollo-upload-client'
 import { ApolloLink, concat } from 'apollo-link';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-// import './App.css';
 import Header from './components/ui-molecules/Header';
 import Dashboard from "./components/pages/Dashboard";
 import NavBar from './components/ui-molecules/NavBar';
 import LogInPage from './components/pages/LogInPage';
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, withRouter } from 'react-router-dom'
 import SignUpPage from './components/pages/SignUpPage'
 import  RegisterProductPage from './components/pages/RegisterProductPage'
 import AddCategoryPage from './components/pages/AddCategoryPage'
@@ -28,10 +27,12 @@ import OrderDetailsPage from './components/pages/OrderDetailsPage';
 import VerifyUser from './components/pages/VerifyUser';
 import EditProductPage from './components/pages/EditProductPage';
 import CategoryPage from './components/pages/CategoryPage';
+import Footer from './components/ui-molecules/Footer';
 
 
-function App() {
+function App({ location: { pathname } }) {
   const [ client, setClient ] = useState(null)
+  const [ displayFooterAndHeader, setDisplayFooterAndHeader ] = useState(true)
   useEffect(() => {
     // setInterval(() => localStorage.clear(), 5000 )
     const initializeClient = async () => {
@@ -97,15 +98,25 @@ function App() {
     initializeClient()
   }, [])
 
+  useEffect(() => {
+    setDisplayFooterAndHeader(!['/signup', '/login'].includes(pathname))
+  }, [pathname])
+
   if(!client) {
     return <h5>....Loading</h5>
   }
+
   return (
     <ApolloProvider client={client} >
     <div className="App">
-      <Header/>
-      <NavBar />
+      { displayFooterAndHeader && 
+        <Fragment>
+          <Header/>
+          <NavBar />
+        </Fragment>
+       }
       <ToastContainer autoClose={5000} draggable={true} position="bottom-left" />
+      <main>
       <Switch>
       <Route path="/registerProduct" component={RegisterProductPage} />
       <Route path="/addCategory" component={AddCategoryPage} />
@@ -123,10 +134,12 @@ function App() {
       <Route path="/checkout" component={CheckOutPage} />
       <Route path="/" component={HomePage} exact />
       </Switch>
+      </main>
+      { displayFooterAndHeader && <Footer /> }
     </div>
     </ApolloProvider>
     
   );
 }
 
-export default App;
+export default withRouter(App);

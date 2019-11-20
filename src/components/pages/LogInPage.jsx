@@ -1,10 +1,12 @@
 import React from 'react'
 import LogInForm from '../ui-molecules/LogInForm'
 import { Link } from 'react-router-dom'
+import SiteLogo from '../ui-molecules/SiteLogo'
 
 export default ({history}) => (
   <main className="auth-page">
   <div className="container">
+  <center><SiteLogo /></center>
   <div className="auth-container">
     <h3>Log In</h3>
   <LogInForm history={history} />
