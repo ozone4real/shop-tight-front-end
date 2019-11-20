@@ -4,15 +4,18 @@ import { useQuery } from '@apollo/react-hooks';
 import CheckOutCard from '../ui-molecules/CheckOutCard';
 import CartEmptyCart from '../ui-molecules/CartEmptyCard';
 import CartItems from '../ui-molecules/CartItems';
+import FlashMessage from '../ui-molecules/FlashMessage';
 
 export default ({ history }) => {
-  const { data: {user} } = useQuery(USER)
+  const { data: { user } } = useQuery(USER)
   const { data, loading } = useQuery(USER_CART, { fetchPolicy: user.isLoggedIn ? 'cache-and-network' : 'cache'} )
   if(!data) return <div> </div>
 
   return(
     <div className="cart-page">
       <div className="container">
+        { user.isLoggedIn && !user.verified && <FlashMessage 
+/> }
       { !data.userCart.length ? <CartEmptyCart /> :
       <Fragment>
       <h2>My Cart</h2>

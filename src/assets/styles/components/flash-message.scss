@@ -1,0 +1,21 @@
+.flash-container {
+  border: 1px solid rgba($color: #6b3368, $alpha: 0.5);
+  padding: 5px 10px;
+  margin: 10px;
+  position: relative;
+  border-radius: 20px;
+  color: #6b3368;
+  .close-btn {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+  }
+
+  button {
+    margin-left: 10px;
+    border-radius: 8px;
+    background: inherit;
+    border: 1px solid rgba($color: #6b3368, $alpha: 0.5);
+    color: #6b3368;
+  }
+}

@@ -9,7 +9,8 @@ import {
   faPlusCircle,
   faTrash,
   faEnvelope,
-  faPhone
+  faPhone,
+  faTimesCircle
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add (
@@ -22,7 +23,8 @@ library.add (
   faPlusCircle,
   faTrash,
   faEnvelope,
-  faPhone
+  faPhone,
+  faTimesCircle
 )
 
 

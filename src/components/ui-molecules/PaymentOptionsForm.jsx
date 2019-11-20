@@ -13,7 +13,10 @@ export default ({ profileComplete, history }) => {
       history.push(`/orders/${id}`)
       toast.success('Order successfully placed')
     },
-    onError() {
+    onError({ message }) {
+      if(message.match(/403/)) {
+        return toast.error('To be able to complete your order, you need to verify your account. Check your mail for a verification link')
+      }
       toast.error('Request failed. Please try again')
     }
   })

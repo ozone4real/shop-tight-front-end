@@ -447,3 +447,11 @@ export const SUB_CATEGORY_PRODUCTS = (id, page=1) => (
 ${PRODUCT_COLLECTION_FRAGMENT}
 `
 )
+
+export const SEND_VERIFICATION_MAIL = gql`
+mutation {
+  sendVerificationMail(input: {}) {
+    message
+  }
+}
+`
