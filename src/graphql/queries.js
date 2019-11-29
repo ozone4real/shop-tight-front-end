@@ -455,3 +455,12 @@ mutation {
   }
 }
 `
+
+export const SEARCH_QUERY = gql`
+ query($query: String!, $limit: Int = 40, $page: Int=1){
+  searchResults(query: $query, limit: $limit, page: $page) {
+    ...Collection
+  }
+ }
+ ${PRODUCT_COLLECTION_FRAGMENT}
+`

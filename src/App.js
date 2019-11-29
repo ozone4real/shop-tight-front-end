@@ -28,6 +28,7 @@ import VerifyUser from './components/pages/VerifyUser';
 import EditProductPage from './components/pages/EditProductPage';
 import CategoryPage from './components/pages/CategoryPage';
 import Footer from './components/ui-molecules/Footer';
+import SearchResultsPage from './components/pages/SearchResultsPage';
 
 
 function App({ location: { pathname } }) {
@@ -129,6 +130,7 @@ function App({ location: { pathname } }) {
       <Route path="/orders/:id" component={OrderDetailsPage} />
       <Route path="/dashboard" component={Dashboard} />
       <Route path="/categories/:urlKey" component={CategoryPage} />
+      <Route path="/search" component={SearchResultsPage} />
       <Route path="/cart" component={CartPage} />
       < Route path="/verify" component={VerifyUser} />
       <Route path="/checkout" component={CheckOutPage} />

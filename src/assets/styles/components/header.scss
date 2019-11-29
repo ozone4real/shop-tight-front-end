@@ -26,15 +26,34 @@ header {
 				}
 			}
 
-			input {
+			.input-wrapper {
 				width: calc(100% - 90px);
-				outline: none;
-				padding: 10px;
-				box-sizing: border-box;
-				border: 1px solid #d8d8d8;
 				margin: 5px;
-				border-radius: 5px;
-				box-shadow: 0 0.125rem 0.25rem 0 rgba(0, 0, 0, 0.1);
+				position: relative;
+
+				.menu-dropdown {
+					position: absolute;
+					z-index: 1000;
+					width: 100%;
+					font-size: 90%;
+
+					.menu-item {
+						padding: 10px;
+						cursor: pointer;
+						display: block;
+					}
+				}
+
+				input {
+					width: 100%;
+					outline: none;
+					padding: 10px;
+					box-sizing: border-box;
+					border: 1px solid #d8d8d8;
+					border-radius: 5px;
+					box-shadow: 0 0.125rem 0.25rem 0 rgba(0, 0, 0, 0.1);
+				}
+				
 			}
 
 			button {
