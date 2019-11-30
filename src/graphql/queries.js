@@ -457,8 +457,8 @@ mutation {
 `
 
 export const SEARCH_QUERY = gql`
- query($query: String!, $limit: Int = 40, $page: Int=1){
-  searchResults(query: $query, limit: $limit, page: $page) {
+ query($query: String!, $limit: Int = 40, $page: Int=1, $sortParams: SortAttributes = null){
+  searchResults(query: $query, limit: $limit, page: $page, sortParams: $sortParams) {
     ...Collection
   }
  }

@@ -1,13 +1,23 @@
 .search-results-page {
+  padding-bottom: 80px;
   h2 {
     margin-bottom: 30px;
+    text-align: center;
+  }
+  .select-field {
+    padding: 10px;
+    select {
+      font-size: inherit;
+      background: white;
+    }
+
   }
   .search-results-container {
     .product-list {
       display: flex;
       flex-flow: row wrap;
       .product-card-sm {
-        width: 22.5%;
+        width: 18%;
         border: 1px solid rgba(0, 0, 0, 0.06);
         box-shadow : 0 0.125rem 0.8rem 0 rgba(0, 0, 0, 0.1);
         margin: 10px;
