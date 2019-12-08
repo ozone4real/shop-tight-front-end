@@ -5,11 +5,19 @@ import { CATEGORY_PRODUCTS } from '../../graphql/queries'
 import { getIdFromUrlKey } from '../../utils/helperMethods';
 import CategorySection from '../ui-molecules/CategorySection';
 import SubCategoryPage from './SubCategoryPage';
+import Skeleton from 'react-loading-skeleton';
+import SectionSkeleton from '../ui-molecules/SectionSkeleton';
 
 export default ({ match: { params } }) => {
   const { data } = useQuery(CATEGORY_PRODUCTS(getIdFromUrlKey(params.urlKey)), { fetchPolicy: "cache-and-network" })
   
-  if(!data) return <div></div>
+  if(!data) return (
+    <div className="category-page">
+      <div className="container">
+        <SectionSkeleton leftHeight="300px" rightHeight="700px" />
+  </div>
+  </div>
+  )
 
 
   const {

@@ -3,6 +3,7 @@ import { useQuery } from "@apollo/react-hooks";
 import { Link } from 'react-router-dom'
 import { CATEGORIES } from '../../graphql/queries'
 import 'react-lazy-load-image-component/src/effects/blur.css'
+import Skeleton from 'react-loading-skeleton';
 
 
 export default () => {
@@ -15,9 +16,7 @@ export default () => {
     return () => clearTimeout(timer)
   })
 
-  if(loading) return <div></div>
-
-  const selectedCategories = data.categories.filter(({categoryName}) => (
+  const selectedCategories = data && data.categories.filter(({categoryName}) => (
     ["Phones And Tablets", "Computers", "Women's clothing" ].includes(categoryName)) 
   );
 
@@ -35,15 +34,16 @@ export default () => {
     {top: '25%', left: '27.5%'}
   ]
   
-  const currentCat  = selectedCategories[currentIndex]
+  const currentCat  = selectedCategories && selectedCategories[currentIndex]
   const position = Math.floor(Math.random() * descPositions.length)
 
   return (
     <section className="showcase-carousel">
-      {selectedCategories.map((cat, index) => (
+      {(!selectedCategories || loadedImages < selectedCategories.length) && <Skeleton height="350px" /> }
+      {selectedCategories && selectedCategories.map((cat, index) => (
       <Link to={`/categories/${cat.urlKey}`} key={index} style={
         { display: loadedImages < selectedCategories.length  ? 'none' : 'block' }
-      }>
+      } >
       <div className={`carousel-item ${index === currentIndex && 'is-current'}`} >
       <h1 className="desc" style={descPositions[position]}>
       {cat.categoryDescription}

@@ -24,7 +24,7 @@ export default ({ content }) => {
     <div class="flash-container" style={{ display: visibility ? "block" : "none"  }}>
     <span class="close-btn" onClick={() => setVisibility(false)} ><FontAwesomeIcon icon="times-circle" /></span>
      <div>{ content ||
-          <span>Your Account in unverified. To be able to order items, you would need to verify your account.
+          <span>Your Account is unverified. To be able to order items, you would need to verify your account.
             <button onClick={handleSendEmail}>Send a verification link to my mail</button>
           </span>
         }

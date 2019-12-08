@@ -4,11 +4,11 @@ import TopDealsSection from '../ui-molecules/TopDealsSection';
 import BestSellingSection from '../ui-molecules/BestSellingSection';
 
 export default () => (
-    <main className="home-page">
+    <div className="home-page">
     <div className="container">
     <ShowcaseCarousel />
     <TopDealsSection />
     <BestSellingSection />
     </div>
-  </main>
+  </div>
   )

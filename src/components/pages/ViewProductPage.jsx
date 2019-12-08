@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import Select from '../ui-molecules/Select';
 import CatalogTreeNav from '../ui-molecules/CatalogTreeNav';
 import CartIcon from '../../assets/icons/shopping-cart'
+import SectionSkeleton from '../ui-molecules/SectionSkeleton';
 
 export default ({ match: {params: { urlKey }} }) => {
   const { data, loading } = useQuery(PRODUCT(getIdFromUrlKey(urlKey)), { fetchPolicy: 'cache-and-network' });
@@ -70,7 +71,14 @@ export default ({ match: {params: { urlKey }} }) => {
     }
   })
 
-  if(!data) return <div></div>
+  if(!data) return (
+    <div className="view-product-page">
+      <div className="container">
+        <SectionSkeleton leftHeight="700px" rightHeight="300px" />
+  </div>
+  </div>
+  )
+
 
 
   const sizesForSelectedColor = productDetails.filter((item) => item.size && item.color === selectedColor)
@@ -156,7 +164,7 @@ export default ({ match: {params: { urlKey }} }) => {
   }
 
   return (
-  <main role='main' className="view-product-page">
+  <div role='main' className="view-product-page">
     <div className="container">
       <CatalogTreeNav
       tree={tree}
@@ -252,6 +260,6 @@ export default ({ match: {params: { urlKey }} }) => {
     </aside>
     </section>
     </div>
-    </main>
+    </div>
   )
 }

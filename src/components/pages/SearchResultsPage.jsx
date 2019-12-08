@@ -3,6 +3,8 @@ import { useQuery } from '@apollo/react-hooks';
 import { SEARCH_QUERY } from '../../graphql/queries'
 import ProductCardSmall from '../ui-molecules/ProductCard-Small';
 import SortMenu from '../ui-molecules/SortMenu';
+import ProductCardSkeleton from '../ui-molecules/ProductCardSkeleton';
+
 
 export default ({ location }) => {
   const queryParams = new URLSearchParams(location.search);
@@ -15,7 +17,6 @@ export default ({ location }) => {
     sortParams: {[sort_param] : order}
   }})
 
-  if(!data) return <div></div>
 
   return ( 
   <div className="search-results-page">
@@ -24,9 +25,9 @@ export default ({ location }) => {
     <SortMenu />
     <div className="search-results-container">
       <div className="product-list">
-      {data.searchResults.map((item) => (
-        <ProductCardSmall product={item} />
-      ))}
+      {data ? data.searchResults.map((item) => (
+        <ProductCardSmall product={item} /> 
+      )) : <div className="product-list">{Array.from({ length: 30 }, () =>  <ProductCardSkeleton /> )}</div> }
       </div>
     </div>
     </div>
