@@ -16,12 +16,11 @@ export default ({ match: {params: { urlKey }} }) => {
   if(data) {
     var { 
       product: {
-      id: productId, 
-      productName, 
-      productDescription, 
-      brand, productDetails, 
-      images, subCategory,
-      shippingFee, category,
+      id, productName, 
+      productDescription,
+      brand, productDetails,
+      images, category,
+      shippingFee,
       discount
      }
     } = data;
@@ -31,9 +30,6 @@ export default ({ match: {params: { urlKey }} }) => {
     var { price: productPrice, discounted: discountedPrice } = priceRange(productDetails)
   
   }
-
-  const tree = [category, subCategory]
-  
 
   const [ {price, discounted}, setPrice ] = useState({
     price: '',
@@ -79,6 +75,8 @@ export default ({ match: {params: { urlKey }} }) => {
   </div>
   )
 
+  const tree = [...category.ancestors.reverse(), category]
+
 
 
   const sizesForSelectedColor = productDetails.filter((item) => item.size && item.color === selectedColor)
@@ -101,11 +99,12 @@ export default ({ match: {params: { urlKey }} }) => {
     const { userCart } = client.readQuery({ query: USER_CART})
     const prod = selectedVariation || productDetails[0];
     const cartClone = [...userCart];
-    const prodExists = userCart.find((item) => item.productDetail.id === prod.id )
-    const product = {id: productId, productName, 
+    const prodExists = userCart.find((item) => item.product.productId === prod.id )
+    const product = {id, productName, 
       productDescription, 
       brand, urlKey,
-      images, subCategory,
+      images,
+      productId: prod.id,
       shippingFee, category,
       discount, __typename: 'ProductType'
     }
@@ -116,15 +115,15 @@ export default ({ match: {params: { urlKey }} }) => {
       const index = userCart.indexOf(prodExists)
       const existingQuantity = cartClone[index].quantity
       totalQuantity = existingQuantity + quantitySelected
+      if(totalQuantity > quantityInStock) {
+        return toast.error('The quantity of this product in your cart is already as much as the quantity in stock')
+      }
       discountedSubTotalForProduct = prod.discountedPrice * totalQuantity
       subTotalForProduct = prod.price * totalQuantity
       cartClone[index] =  { ...cartClone[index], quantity: totalQuantity, discountedSubTotalForProduct, subTotalForProduct};
     } else {
-      cartClone.push({ productDetail: {...prod,  product }, __typename: 'Cart', quantity: quantitySelected, discountedSubTotalForProduct, subTotalForProduct })
-    }
-
-    if(totalQuantity > quantityInStock) {
-      return toast.error('The quantity of this product in your cart is already as much as the quantity in stock')
+      console.log(prod)
+      cartClone.push({ product: {...prod, ...product }, __typename: 'Cart', quantity: quantitySelected, discountedSubTotalForProduct, subTotalForProduct })
     }
 
 
@@ -186,8 +185,8 @@ export default ({ match: {params: { urlKey }} }) => {
     <div className="product-details-sec">
     <h2>{brand} {productName}</h2>
     <div className="prod-category text-light">
-    <span>In</span> > <Link className="hover-underline" to={`/sub-categories/${subCategory.urlKey}`}>
-      <b>{subCategory.categoryName}</b>
+    <span>In</span> > <Link className="hover-underline" to={`/sub-categories/${category.urlKey}`}>
+      <b>{category.categoryName}</b>
     </Link>
     </div>
     <hr/>
@@ -196,7 +195,7 @@ export default ({ match: {params: { urlKey }} }) => {
     </div>
     <hr/>
     <div><span className="text-light text-md item-title">BRAND:</span> <h4 className="d-inline">{brand}</h4></div>
-    <div><span className="text-light text-md item-title">SKU:</span> <h4 className="d-inline">{productId}</h4></div>
+    <div><span className="text-light text-md item-title">SKU:</span> <h4 className="d-inline">{id}</h4></div>
     <div><span className="text-light text-md item-title">QUANTITY SOLD:</span> <h4 className="d-inline">{quantitySold}</h4></div>
     <hr/>
     <h3 className="text-light">Variations</h3>

@@ -18,6 +18,7 @@ export default (history) => {
     })
   const client = useApolloClient();
   const { userCart } = client.readQuery({ query: USER_CART })
+  console.log(userCart)
   const [ addProductToCart ] = useMutation(ADD_PRODUCT_TO_CART, {
     onCompleted(data) {
       client.writeData({
@@ -34,7 +35,7 @@ export default (history) => {
       userCart.forEach((item) => {
         addProductToCart({
           variables: { 
-            input: { quantity: item.quantity, productDetailId: item.productDetail.id }
+            input: { quantity: item.quantity, productDetailId: item.product.productId }
           }
         }) 
       })

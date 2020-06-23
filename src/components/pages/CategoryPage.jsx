@@ -7,6 +7,7 @@ import CategorySection from '../ui-molecules/CategorySection';
 import SubCategoryPage from './SubCategoryPage';
 import Skeleton from 'react-loading-skeleton';
 import SectionSkeleton from '../ui-molecules/SectionSkeleton';
+import CatalogTreeNav from '../ui-molecules/CatalogTreeNav';
 
 export default ({ match: { params } }) => {
   const { data } = useQuery(CATEGORY_PRODUCTS(getIdFromUrlKey(params.urlKey)), { fetchPolicy: "cache-and-network" })
@@ -21,13 +22,17 @@ export default ({ match: { params } }) => {
 
 
   const {
-    category: { categoryName, categoryDescription, subCategories },
+    category,
     categoryProducts
   } = data
+  const { categoryName, categoryDescription, subCategories, ancestors } = category
+
+  const tree = [...ancestors.reverse(), category]
 
   return (
     <div className="category-page">
       <div className="container">
+      {!!ancestors.length && <CatalogTreeNav tree={tree} />}
         <section className="main-sec">
           <div class="left-sec">
           <h3><NavLink to={`/categories/${params.urlKey}`}> {categoryName}</NavLink></h3>
@@ -35,14 +40,14 @@ export default ({ match: { params } }) => {
             <ul>
               {
                 subCategories.map((item) => (
-                  <li key={item.urlKey}><NavLink activeClassName="path-active" to={`/categories/${params.urlKey}/${item.urlKey}`}>{item.categoryName}</NavLink></li>
+                  <li key={item.urlKey}><NavLink activeClassName="path-active" to={`/categories/${item.urlKey}`}>{item.categoryName}</NavLink></li>
                 ))
               }
             </ul>
           </div>
           <div class="right-sec">
             <Switch>
-            <Route path="/categories/:urlKey/:subUrlKey" key={categoryName} render={(props) => (
+            <Route path="/categories/:urlKey" key={categoryName} render={(props) => (
                   <SubCategoryPage {...props} />
                 )} />
             

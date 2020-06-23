@@ -12,16 +12,16 @@
       ul {
         margin-top: 20px;
         li {
-          margin-bottom: 20px;
-          list-style-type: square;
-          list-style-position: inside;
+          margin-bottom: 10px;
           a {
             padding: 7px;
+            display: inline-block;
+            width: 100%;
           }
           a.path-active {
-            background: white;
-            border-radius: 15px;
-            border: 1px solid rgba(0, 0, 0, 0.06);
+            background: #ece3ea;
+            color: #6b3368;
+            border-radius: 4px;
           }
         }
       }

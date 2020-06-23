@@ -6,6 +6,7 @@ import '../src/assets/styles/index.scss';
 import './fontawesome';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import './utils/monekeyPatch'
 
 
 ReactDOM.render(

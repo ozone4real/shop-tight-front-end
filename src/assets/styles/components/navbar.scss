@@ -6,7 +6,7 @@
 		width: 85%;
 		flex-direction: row;
 		flex-wrap: wrap;
-		justify-content: space-around;
+		// justify-content: flex-start;
 		align-items: center;
 		margin: auto;
 		.home-link {
@@ -14,7 +14,7 @@
 		}
 
 		.cat-link {
-			padding: 10px;
+			padding: 10px 30px;
 			position: relative;
 
 			a {
@@ -25,7 +25,8 @@
         transition: visibility 0s, transform 0.4s ease-in-out;
 				position: absolute;
 				top: 100%;
-				left: -1px;
+				left: 0;
+				text-align: center;
 				z-index: 10000;
         transform:scaleY(0);
 				visibility: hidden;

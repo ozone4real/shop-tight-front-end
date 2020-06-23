@@ -9,9 +9,9 @@ export default ({ data, user }) => (
   {data.userCart.map((item) => (
     <CartItemCard
     user={user} 
-    key={item.productDetail.id}
+    key={item.product.productId}
     quantity={item.quantity}
-    product={normalizeCartProductData(item.productDetail)}
+    product={item.product}
     discountedSubTotalForProduct={item.discountedSubTotalForProduct}
     subTotalForProduct={item.subTotalForProduct} 
      />

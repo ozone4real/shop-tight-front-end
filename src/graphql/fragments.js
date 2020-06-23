@@ -5,18 +5,16 @@ fragment UserCart on Cart {
   quantity,
   discountedSubTotalForProduct
   subTotalForProduct
-  productDetail {
-      product {
-        productName
-        productDescription
-        images
-        brand
-        shippingFee
-        discount
-        id
-        urlKey
-      },
+    product {
+      productName
+      productDescription
+      images
+      brand
+      shippingFee
+      discount
       id
+      urlKey
+      productId
       size
       color
       quantitySold
@@ -25,7 +23,7 @@ fragment UserCart on Cart {
       price
       discountedPriceInNaira
       quantityInStock,
-  }
+    }
 }
 `
 

@@ -335,13 +335,13 @@ export const PRODUCT = (id) => (
       urlKey
       quantityInStock
       }
-    subCategory {
-      categoryName
-      urlKey
-    }
     category {
       categoryName
       urlKey
+      ancestors {
+        categoryName
+        urlKey
+      }
     }
   }
 }
@@ -419,7 +419,11 @@ export const CATEGORY_PRODUCTS = (id, page=1) => (
   {
     category (id: ${id}) {
       categoryName
-      categoryDescription,
+      categoryDescription
+      ancestors{
+        categoryName
+        urlKey
+      }
       subCategories {
         categoryName
         urlKey

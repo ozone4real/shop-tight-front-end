@@ -7,12 +7,13 @@ export default ({tree, product}) => (
     {tree.map((node) => (
       <Fragment key={node.urlKey}>
      <span className="next-arrow text-lighter"> > </span> 
-     <NavLink className="text-md" to={`/${node.urlKey}`} key={node.urlKey}>{node.categoryName}</NavLink>
+     <NavLink className="text-md" to={`/categories/${node.urlKey}`} key={node.urlKey}>{node.categoryName}</NavLink>
      </Fragment>
     ))}
-     <Fragment>
-     <span className="next-arrow text-lighter"> > </span> 
-    <span className="text-md text-light">{product}</span>
-    </Fragment>
+      { product && <Fragment>
+        <span className="next-arrow text-lighter"> > </span> 
+        <span className="text-md text-light">{product}</span>
+        </Fragment>
+      }
   </nav>
 )

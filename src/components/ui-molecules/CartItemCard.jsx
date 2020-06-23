@@ -27,7 +27,7 @@ export default ({ product, quantity, discountedSubTotalForProduct, user }) => {
     }
   })
 
-  const [ removeProductFromCart, { loading } ] = useMutation(REMOVE_PRODUCT_FROM_CART(product.id), {
+  const [ removeProductFromCart, { loading } ] = useMutation(REMOVE_PRODUCT_FROM_CART(product.productId), {
     onCompleted({removeProductFromCart: {message, userCart, totalShippingFee, totalPriceWithoutCharges}}) {
       client.writeData({
         data: {
@@ -52,14 +52,14 @@ export default ({ product, quantity, discountedSubTotalForProduct, user }) => {
         variables : {
           input: {
             quantity: parseInt(value),
-            productDetailId: product.id
+            productDetailId: product.productId
           }
         }
       })
     }
 
     const cartClone = [...userCart]
-    let itemToUpdate = cartClone.find((item) => item.productDetail.id === product.id)
+    let itemToUpdate = cartClone.find((item) => item.product.productId === product.productId)
     const index = cartClone.indexOf(itemToUpdate)
     itemToUpdate = {...itemToUpdate, quantity: parseInt(value) , 
       discountedSubTotalForProduct: product.discountedPrice * parseInt(value)
@@ -78,7 +78,7 @@ export default ({ product, quantity, discountedSubTotalForProduct, user }) => {
       return removeProductFromCart()
     }
     const cartClone = [...userCart]
-    const updatedCart = cartClone.filter((item) => item.productDetail.id !== product.id)
+    const updatedCart = cartClone.filter((item) => item.product.productId !== product.productId)
     client.writeData({
       data: {
         userCart: updatedCart

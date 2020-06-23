@@ -19,7 +19,7 @@ export default ({product: {images = "", productName="", brand="", urlKey="", qua
     <img src={images[0]} alt="PRODUCT" onLoad={handleLoad} style= {{display: loading ? 'none' : 'block' }} />
     </div>
     <div className="product-name">
-      {truncateText(`${brand} ${productName}`, 40)}
+      {`${brand} ${productName}`.truncate(40)}
     </div>
     <div className="product-price">
     <p>{discounted}</p> 
