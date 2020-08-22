@@ -1,15 +1,26 @@
 .profile-container {
   background: white;
-  padding: 30px 30px 40px 30px;
+  padding: 10px 20px;
   box-shadow: 0 0.125rem 0.25rem 0 rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(0, 0, 0, 0.1);
+
+  @media(min-width: 992px) {
+    padding: 30px 30px 40px 30px;
+  }
   h2 {
     margin: 10px 0 40px 0;
     text-align: center;
   }
   .input-field {
-    width: 30%;
-    margin-right: 20px;
+    width: 43%;
+    margin-right: 10px;
+    @media(min-width: 768px) {
+      width: 45%;
+    }
+    @media(min-width: 992px) {
+      width: 30%;
+      margin-right: 20px;
+    }
   }
   
 }

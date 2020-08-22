@@ -1,17 +1,29 @@
 body {
   margin: 0;
-  font-size: 15px;
-  background-color: #F1F7F9;
-  font-family: -apple-system, 'Lato', BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+  font-size: 13px;
+  background-color: #f1f7f9;
+  font-family: -apple-system, "Lato", BlinkMacSystemFont, "Segoe UI", "Roboto",
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   box-sizing: border-box;
+
+  @media (min-width: 768px) {
+    font-size: 15px;
+  }
 }
 
 * {
-  box-sizing: border-box; 
+  box-sizing: border-box;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.text-bold {
+  font-weight: 600;
 }
 
 .App {
@@ -23,19 +35,14 @@ main {
   padding-bottom: 200px;
 }
 
-
 .site-logo {
   color: #6b3368;
-  font-family: 'Acme', Geneva, Verdana, sans-serif;
+  font-family: "Acme", Geneva, Verdana, sans-serif;
   flex-grow: 1;
-  font-size: 80%;
-  @media (min-width: 768px) {
+  font-size: 90%;
+  @media (min-width: 992px) {
     font-size: initial;
   }
-}
-
-.path-active {
-  background: whitesmoke;
 }
 
 
@@ -123,11 +130,11 @@ button:focus {
 }
 
 .container {
-  width: 90%;
+  width: 95%;
   margin: auto;
   overflow: hidden;
-
-  @media (min-width: 576px) {
+  
+  @media (min-width: 992px) {
     width: 85%;
   }
 }
@@ -140,13 +147,14 @@ button:focus {
 svg {
   width: 22px;
   height: 22px;
-  @media (min-width: 576px) {
+  @media (min-width: 768px) {
     width: 25px;
     height: 25px;
   }
 }
 
-button, input {
+button,
+input {
   font-size: 14px;
 }
 

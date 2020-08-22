@@ -5,11 +5,21 @@ footer {
   bottom: 0;
   width: 100%;
 
+  .container {
+    @media (max-width: 767px) {
+      width: 100%;
+    }
+  }
+
   .footer-container {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
     align-items: center;
     padding: 20px;
+    @media (max-width: 767px) {
+      padding: 20px 10px;
+      font-size: 12px;
+    }
   }
 }

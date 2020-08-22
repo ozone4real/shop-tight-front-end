@@ -39,9 +39,9 @@ const Header = () => {
               <div className="account-links">
                 <Avatar />
           { 
-            loading || !data.user.isLoggedIn ? <Link to='/signup'>Sign Up</Link> 
+            loading || !data.user.isLoggedIn ? <Link className="signup-link" to='/signup'>Sign Up</Link> 
             : (
-                <Fragment><span>{data.user.firstName}</span>
+                <Fragment><span class="icon-title">{data.user.firstName}</span>
                 <FontAwesomeIcon icon='caret-down' />
                 <ul>
                 <li><Link to='/dashboard/profile'>My Profile</Link></li>
@@ -69,7 +69,7 @@ const Header = () => {
                 </span> : ''
               }
                 </span>
-              <span> My Cart</span>
+              <span class="icon-title"> My Cart</span>
             </Link>
         </div>
       </div>

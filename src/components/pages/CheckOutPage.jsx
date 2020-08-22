@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
 import ProfileForm from '../ui-molecules/ProfileForm';
 import CartItems from '../ui-molecules/CartItems';
@@ -42,6 +43,11 @@ export default ({ history }) => {
           <h2>Your Order </h2>
           <CartItems data={data} user={user} />
           <OrderSummaryCard data={data} />
+          {!profileComplete && <p class="update-info"> Your account information is incomplete. Please update your info to be able to confirm your order. <Link class="underline" to="/dashboard/profile">Update info</Link> </p>}
+          <section className={`payment-method-section ${!profileComplete && 'blur'}`}>
+          <h2>Select Payment Option</h2>
+          <PaymentOptionsForm profileComplete={profileComplete} history={history} />
+        </section>
         </div>
         </section>
       </div>

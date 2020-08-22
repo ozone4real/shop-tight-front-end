@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
 import { priceInNaira, optionsArrayFromNum, truncateText } from '../../utils/helperMethods';
@@ -87,29 +87,57 @@ export default ({ product, quantity, discountedSubTotalForProduct, user }) => {
     toast.success('Item successfully removed from cart')
   }
   return (
-  <div className="horizontal-card">
-      <div className="prod-img">
-        <img src={product.images[0]} alt={product.productName} />
-      </div>
-      <div className="product-details">
-       <div><h3><Link to={`/products/${product.urlKey}`} >{ truncateText(`${product.brand} ${product.productName}`, 67) }</Link></h3></div> 
-        {product.size && <div className="text-lighter"><span className="text-md item-title">SIZE:</span>{product.size} </div>}
-        {product.color && <div className="text-lighter"><span className="text-md item-title">COLOR:</span>{product.color} </div>}
-        <div className="actions-sec">
-          <a className={`text-lighter ${loading && 'blur'}`} href="javascript:void(0)" onClick={handleRemoveItem}><GarbageIcon /> {`Remov${loading ? 'ing' : 'e'} Item`} </a>
+  <Fragment>
+    <div className="horizontal-card">
+        <div className="prod-img">
+          <img src={product.images[0]} alt={product.productName} />
         </div>
-      </div>
-      <div className="quantity-sec">
-        <h3><Select onChange={handleChange} value={quantitySelected} options={optionsArrayFromNum(product.quantityInStock)} /></h3>
-      </div>
-      <div className="unit-price-sec">
-        <h3>{priceInNaira(product.discountedPrice)}</h3>
-        <span className="line-through text-lighter">{priceInNaira(product.price)}</span>
-      </div>
-      <div className="total-price-sec">
-        <h3>{priceInNaira(discountedSubTotalForProduct)}</h3>
-      </div>
-      <div></div>
-  </div>
+        <div className="product-details">
+        <div><h3><Link to={`/products/${product.urlKey}`} >{ truncateText(`${product.brand} ${product.productName}`, 67) }</Link></h3></div> 
+          {product.size && <div className="text-lighter"><span className="text-md item-title">SIZE:</span>{product.size} </div>}
+          {product.color && <div className="text-lighter"><span className="text-md item-title">COLOR:</span>{product.color} </div>}
+          <div className="actions-sec">
+            <a className={`text-lighter ${loading && 'blur'}`} href="javascript:void(0)" onClick={handleRemoveItem}><GarbageIcon /> {`Remov${loading ? 'ing' : 'e'} Item`} </a>
+          </div>
+        </div>
+        <div className="quantity-sec">
+          <h3><Select onChange={handleChange} value={quantitySelected} options={optionsArrayFromNum(product.quantityInStock)} /></h3>
+        </div>
+        <div className="unit-price-sec">
+          <h3>{priceInNaira(product.discountedPrice)}</h3>
+          <span className="line-through text-lighter">{priceInNaira(product.price)}</span>
+        </div>
+        <div className="total-price-sec">
+          <h3>{priceInNaira(discountedSubTotalForProduct)}</h3>
+        </div>
+        <div></div>
+    </div>
+
+    <div className="horizontal-card mobile">
+        <div className="prod-img">
+          <img src={product.images[0]} alt={product.productName} />
+        </div>
+        <div className="product-details">
+        <div><h3><Link to={`/products/${product.urlKey}`} >{ truncateText(`${product.brand} ${product.productName}`, 67) }</Link></h3></div> 
+          {product.size && <div className="text-lighter"><span className="text-md item-title">SIZE:</span>{product.size} </div>}
+          {product.color && <div className="text-lighter"><span className="text-md item-title">COLOR:</span>{product.color} </div>}
+          <div className="price-sec">
+            <div className="unit">
+              <span class="text-lighter">Unit Price: &nbsp;</span> <span class="text-bold">{priceInNaira(product.discountedPrice)}</span> &nbsp; &nbsp;
+              <span className="line-through text-lighter">{priceInNaira(product.price)}</span>
+            </div>
+            <div className="sub-total">
+            <span class="text-lighter">Sub-total: &nbsp;</span> <span class="text-bold">{priceInNaira(discountedSubTotalForProduct)}</span>
+            </div>
+            <div className="quantity-sec">
+              <h3><Select onChange={handleChange} value={quantitySelected} options={optionsArrayFromNum(product.quantityInStock)} /></h3>
+            </div>
+          </div>
+          <div className="actions-sec">
+            <a className={`text-lighter ${loading && 'blur'}`} href="javascript:void(0)" onClick={handleRemoveItem}><GarbageIcon /> </a>
+          </div>
+        </div>
+    </div>
+  </Fragment>
   )
 }

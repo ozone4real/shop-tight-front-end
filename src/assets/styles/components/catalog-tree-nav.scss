@@ -1,6 +1,9 @@
 .catalog-tree-nav {
+  display: none;
   margin: 10px;
-  display: inline-block;
+  @media (min-width: 768px) {
+    display: inline-block;
+  }
   .next-arrow {
     margin: 10px;
   }

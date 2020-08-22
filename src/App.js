@@ -56,7 +56,7 @@ function App({ location: { pathname } }) {
       });
 
       const options = {
-        uri: process.env.REACT_APP_API_URL || 'http://localhost:5000/graphql'
+        uri: process.env.REACT_APP_API_URL || 'https://shop-tight.herokuapp.com/graphql'
       }
       const httpLink = new HttpLink(options)
       

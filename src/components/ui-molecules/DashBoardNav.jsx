@@ -9,11 +9,9 @@ export default () => (
     <NavLink className="profile" to="/dashboard/profile" activeClassName="path-active" >
       <AvatarIcon /> <span>My Profile</span>
     </NavLink>
-    <hr/>
     <NavLink className="profile" to="/dashboard/orders" activeClassName="path-active">
       <OrdersIcon /> <span>My Orders</span>
     </NavLink>
-    <hr/>
     <NavLink className="profile" to="/dashboard/pending-reviews" activeClassName="path-active">
       <ReviewIcon /> <span>Pending Reviews</span>
     </NavLink>

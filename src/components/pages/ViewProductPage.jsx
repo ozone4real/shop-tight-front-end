@@ -255,11 +255,20 @@ export default ({ match: {params: { urlKey }} }) => {
           />
         </div>
         <div className="add-to-cart-btn" >
-          <button onClick={handleSubmit}> <CartIcon color="white" /> <span>Add To Cart</span></button>
+          <button class="add-cart-btn" onClick={handleSubmit}> <CartIcon color="white" /> <span>Add To Cart</span></button>
         </div>
     </aside>
     </section>
     </div>
+
+      <div className="floating-add-cart-sec" >
+        <Select
+          onChange={handleQuantitySelect}
+          value = {quantitySelected}
+          options={optionsArrayFromNum(quantityInStock)} 
+        />  
+      <button class="add-cart-btn" onClick={handleSubmit}> <CartIcon color="white" /> <span>Add To Cart</span></button>
+      </div>
     </div>
   )
 }

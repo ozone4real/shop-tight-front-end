@@ -6,25 +6,40 @@
     margin-top: 14px;
   }
   .main-sec {
-    display: grid;
-    grid-template-columns: 50% 50%;
-
-    .left-sec, .right-sec {
-      box-shadow: 0 0.125rem 0.25rem 0 rgba(0, 0, 0, 0.1);
-      border: 1px solid rgba(0, 0, 0, 0.1);
-      margin: 30px;
-      padding: 20px 30px;
-      background: white;
+    @media (min-width: 768px) {
+      display: grid;
+      grid-template-columns: 50% 50%;
     }
 
-    .left-sec { 
+    @media (min-width: 992px) {
+      margin: 30px;
+    }
 
-      .order-details > div, .delivery-details > div, .payment-details > div {
+    .left-sec,
+    .right-sec {
+      box-shadow: 0 0.125rem 0.25rem 0 rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      margin: 30px 10px;
+      padding: 20px 30px;
+      background: white;
+
+      @media (min-width: 768px) {
+        margin: 30px 15px;
+      }
+  
+      @media (min-width: 992px) {
+        margin: 30px;
+      }
+    }
+
+    .left-sec {
+      .order-details > div,
+      .delivery-details > div,
+      .payment-details > div {
         display: flex;
         justify-content: space-between;
         margin-top: 30px;
       }
-
     }
     .right-sec {
       height: max-content;
@@ -40,10 +55,9 @@
           }
         }
         .other-details-sec {
-          width: 78%
+          width: 78%;
         }
       }
     }
-    
   }
 }

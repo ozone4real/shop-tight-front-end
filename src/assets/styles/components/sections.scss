@@ -5,27 +5,43 @@
   border: 1px solid rgba(0, 0, 0, 0.1);
   .top-deals-container {
     display: flex;
-    flex-flow: row nowrap;
-    }
+    flex-flow: row wrap;
+  }
 
-    .sec-heading {
-      background: white;
-      margin: 0;
-      padding: 10px 20px;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    }
+  .sec-heading {
+    background: white;
+    margin: 0;
+    padding: 10px 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
 }
 
 .top-deals-sec {
   .product-card-sm {
-    width: 19%;
-  } 
+    width: 50%;
+
+    @media (min-width: 768px) {
+      width: 33%;
+    }
+
+    @media (min-width: 992px) {
+      width: 16.66666666%;
+    }
+  }
 }
 
 .best-selling-sec {
   .product-card-sm {
-    width: 23%;
-    height: 380px;
+    width: 50%;
+    height: 280px;
+
+    @media (min-width: 768px) {
+      width: 33%;
+      height: 380px;
+    }
+
+    @media (min-width: 992px) {
+      width: 20%;
+    }
   }
 }
-

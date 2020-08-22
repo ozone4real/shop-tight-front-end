@@ -5,8 +5,8 @@ import BestSellingSection from '../ui-molecules/BestSellingSection';
 
 export default () => (
     <div className="home-page">
+      <ShowcaseCarousel />
     <div className="container">
-    <ShowcaseCarousel />
     <TopDealsSection />
     <BestSellingSection />
     </div>

@@ -1,6 +1,5 @@
 .horizontal-card {
   width: 100%;
-  display: flex;
   flex-flow: row wrap;
   position: relative;
   background: white;
@@ -10,6 +9,11 @@
   height: 165px;
   box-shadow: 0 0.125rem 0.25rem 0 rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(0, 0, 0, 0.1);
+  display: none;
+
+  @media (min-width: 768px) {
+    display: flex;
+  }
 
   .actions-sec {
     vertical-align: bottom;
@@ -86,7 +90,7 @@
 
 
 .cart-table-header {
-  display: flex;
+  display: none;
   flex-direction: row;
   h4 {
      margin-bottom: 10px;
@@ -107,6 +111,43 @@
   .quantity-sec {
     width: 17%;
     text-align: center;
+  }
+
+  @media (min-width: 768px) {
+    display: flex;
+  }
+}
+
+.horizontal-card.mobile {
+  display: flex;
+  padding: 10px;
+  height: max-content;
+
+  @media(min-width: 768px) {
+    display: none;
+  }
+
+  .prod-img {
+    width: 25% !important;
+  }
+
+  .product-details {
+    width: 67%;
+    h3 {
+      margin: 0;
+    }
+
+    >div, .price-sec > div  {
+      margin-bottom: 5px;
+    }
+  
+
+    .quantity-sec {
+      width: 100px;
+      .select-field {
+        margin: 0;
+      }
+    }
   }
 }
 

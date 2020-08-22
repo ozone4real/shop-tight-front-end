@@ -9,13 +9,19 @@
   .orders-list{
     display: flex;
     flex-flow: row wrap;
+    justify-content: space-between;
     .order-card {
       background: white;
-      padding: 20px;
-      width: 31%;
-      margin-right: 20px;
+      padding: 10px;
+      width: 49%;
       box-shadow: 0 0.125rem 0.25rem 0 rgba(0, 0, 0, 0.1);
       border: 1px solid rgba(0, 0, 0, 0.1);
+      margin-bottom: 15px;
+
+      @media (min-width: 568px) {
+        width: 31%;
+        padding: 20px;
+      }
       .images-container {
         display: flex;
         flex-flow: row wrap;

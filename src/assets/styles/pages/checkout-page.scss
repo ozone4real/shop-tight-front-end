@@ -4,12 +4,32 @@
     opacity: 0.3;
   }
   .main-sec {
-    display: grid;
-    grid-template-columns: 60% 40%;
     margin-top: 20px;
+    @media (min-width: 992px) {
+      display: grid;
+      grid-template-columns: 60% 40%;
+    }
 
   .right-sec {
-    margin-left: 20px;
+    @media (min-width: 992px) {
+      margin-left: 20px;
+    }
+
+    .update-info, .payment-method-section {
+      display: block;
+      @media (min-width: 992px) {
+        display: none;
+      }
+    }
+
+    .payment-options-form {
+      background-color: white;
+      box-shadow: 0 0.125rem 0.25rem 0 rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin-top: 10px;
+    };
+
     .horizontal-card, .cart-table-header{
       * {
         font-size: 98%;
@@ -25,11 +45,15 @@
   }
 
   .left-sec {
+    display: none;
     background: white;
     padding: 40px 30px;
     margin-right: 10px;
     box-shadow: 0 0.125rem 0.25rem 0 rgba(0, 0, 0, 0.1);
     border: 1px solid rgba(0, 0, 0, 0.1);
+    @media(min-width: 992px) {
+      display: block;
+    }
     .info-heading {
       margin-top: 0;
       margin-bottom: 40px;

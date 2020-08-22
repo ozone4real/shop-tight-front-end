@@ -4,6 +4,22 @@
   box-shadow: 0 0.125rem 0.25rem 0 rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(0, 0, 0, 0.1);
 
+  @media (max-width: 767px) {
+    bottom: 0;
+    width: 100%;
+    z-index: 1000;
+    left: 0;
+    position: fixed;
+
+    .check-out-btn {
+      margin-bottom: 0;
+    }
+
+    h3:first-child, hr {
+      display: none;
+    }
+  }
+
   button {
     width: 100%;
     padding: 10px;
